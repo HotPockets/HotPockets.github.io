@@ -9,12 +9,14 @@ create table users(
   major text,
   primary key (pid)
 );
+#These will be the classes from Marist College
 create table class_list(
   cid int,
   pid int,
   dcrn int,
   primary key(cid)
 );
+#These will be the classes from DCC
 create table dcc(
   dcrn int,
   subject int,
