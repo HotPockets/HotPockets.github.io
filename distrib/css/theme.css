@@ -16,3 +16,24 @@ body {
 .theme-showcase .navbar .container {
   width: auto;
 }
+
+/* Cover page css start */
+div.landing {
+    text-align: center;
+    padding-top: 300px;
+}
+
+div.welcome {
+  text-align: center;
+  font-size: 12pt;
+  padding-bottom: 100px;
+}
+
+div.button {
+    text-align: center;
+}
+
+div.footer {
+    text-align: center;
+}
+/* Cover page css end */
