@@ -1,51 +1,72 @@
+--database for hotpockets--
+--michael shershin--
+
+
+
+---drops  database--
+drop database if exists hotpockets;
+--create database--
 create database hotpockets;
+--drop children and drop them hard
+drop table if exists admin;
+drop table if exists majors;
+drop table if exitst minors;
+drop table if exists dcc;
+--drop the parents--
+drop table if exists users;
+drop table if exists transfer;
+drop table if exists marist;
+
+--creating enum--
+create type cem as enum ('core', 'elective', 'major');
+
+
+
+
+--creating tables whoot whoot mother fuckers--
 create table users(
-  user_id int,
+  user_id serial not null,
   first_name text,
   last_name text,
-  email text,
-  phone_num int,
-  primary key (pid)
+  email text unique,
+  password text,
+  primary key(user_id)
 );
-#These will be the classes from Marist College
-create table class_list(
-  cid int,
-  pid int,
-  dcrn int,
-  primary key(cid)
+create table admin(
+  user_id serial not null references users(user_id),
+  primary key(user_id)
 );
-#These will be the classes from DCC
 create table dcc(
-  dcrn int,
-  subject int,
+  dcrn int not null,
+  subject text,
   course_num int,
   course_title text,
   primary key(dcrn)
 );
-create table transfer(
-  tid int,
-  crn int,
-  dcrn int,
-  status text,
-  group text,
-  primary key(tid)
-);
-create table majors(
-  mid int,
-  crn int,
-  major_name text,
-  primary key(mid)
-);
-create table minors(
-  mnid int,
-  crn int,
-  minor_name text,
-  primary key(mnid)
-);
 create table marist(
-  crn int,
+  crn int not null,
   subject text,
   course_num int,
-  course_title text,
+  course_title int,
   primary key(crn)
+);
+create table majors(
+  major_id serial not null,
+  crn int not null references marist(crn),
+  major_name text,
+  primary key(major_id)
+);
+create table minors(
+  minor_id serial not null,
+  crn int not null references marsit(crn),
+  major_name text,
+  primary key(minor_id)
+);
+create table transfer(
+  transfer_id serial not null,
+  crn int not null references marsit(crn),
+  dcrn int not null references dcc(dcrn),
+  user_id serial not null references users(user_id),
+  course_cem cem,
+  primary key (transfer_id)
 );
