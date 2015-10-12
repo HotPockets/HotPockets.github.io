@@ -1,12 +1,10 @@
 create database hotpockets;
 create table users(
-  pid int,
+  user_id int,
   first_name text,
   last_name text,
   email text,
-  current_school text,
   phone_num int,
-  major text,
   primary key (pid)
 );
 #These will be the classes from Marist College
