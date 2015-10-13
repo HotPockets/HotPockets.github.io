@@ -54,6 +54,7 @@ create table majors(
   major_id serial not null,
   crn int not null references marist(crn),
   major_name text,
+  credits int,
   primary key(major_id)
 );
 create table minors(
