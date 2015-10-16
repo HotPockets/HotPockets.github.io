@@ -59,13 +59,13 @@ create table majors(
 );
 create table minors(
   minor_id serial not null,
-  crn int not null references marsit(crn),
+  crn int not null references marist(crn),
   major_name text,
   primary key(minor_id)
 );
 create table transfer(
   transfer_id serial not null,
-  crn int not null references marsit(crn),
+  crn int not null references marist(crn),
   dcrn int not null references dcc(dcrn),
   user_id serial not null references users(user_id),
   course_cem cem,
