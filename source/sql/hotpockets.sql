@@ -11,10 +11,10 @@ create database hotpockets;
 drop table if exists admin;
 drop table if exists majors;
 drop table if exitst minors;
-drop table if exists dcc;
---drop the parents--
-drop table if exists users;
 drop table if exists transfer;
+--drop the parents--
+drop table if exists dcc;
+drop table if exists users;
 drop table if exists marist;
 
 
