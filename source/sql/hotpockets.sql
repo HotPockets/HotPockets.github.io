@@ -17,6 +17,10 @@ drop table if exists users;
 drop table if exists transfer;
 drop table if exists marist;
 
+
+--drop enums--
+drop type cem;
+
 --creating enum--
 create type cem as enum ('core', 'elective', 'major');
 
@@ -37,14 +41,14 @@ create table admin(
   primary key(user_id)
 );
 create table dcc(
-  dcrn int not null,
+  dcrn serial not null,
   subject text,
   course_num int,
   course_title text,
   primary key(dcrn)
 );
 create table marist(
-  crn int not null,
+  crn serial not null,
   subject text,
   course_num int,
   course_title int,
@@ -59,14 +63,14 @@ create table majors(
 );
 create table minors(
   minor_id serial not null,
-  crn int not null references marist(crn),
+  crn serial not null references marist(crn),
   major_name text,
   primary key(minor_id)
 );
 create table transfer(
   transfer_id serial not null,
-  crn int not null references marist(crn),
-  dcrn int not null references dcc(dcrn),
+  crn serial not null references marist(crn),
+  dcrn serial not null references dcc(dcrn),
   user_id serial not null references users(user_id),
   course_cem cem,
   primary key (transfer_id)
