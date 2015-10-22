@@ -2,7 +2,7 @@ html, body {
   margin: 0px;
   padding: 0px;
   height: 100%;
-  background: linear-gradient(white, silver);
+  background: linear-gradient(white, gray);
 }
 
 .theme-dropdown .dropdown-menu {
