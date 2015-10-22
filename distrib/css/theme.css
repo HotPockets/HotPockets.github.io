@@ -33,18 +33,27 @@ html, body {
   text-align: center;
 }
 
+
+
 /* Cover page css start */
 div.header {
   margin: 0px;
-  padding-top: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   height: 125px;
   background-color: #CC0000;
+  font-size: 50pt;
 }
 div.landing {
   text-align: center;
   padding-top: 50px;
 }
 
+.navbar .btn-group .btn{
+  color: black;
+  font-size: 22pt;
+
+}
 div.button {
     text-align: center;
 }
