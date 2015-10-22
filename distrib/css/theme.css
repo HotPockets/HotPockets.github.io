@@ -1,6 +1,8 @@
-body {
-  padding-top: 70px;
-  padding-bottom: 30px;
+html, body {
+  margin: 0px;
+  padding: 0px;
+  height:100%;
+  background: linear-gradient(white, silver);
 }
 
 .theme-dropdown .dropdown-menu {
@@ -17,16 +19,30 @@ body {
   width: auto;
 }
 
-/* Cover page css start */
-div.landing {
-    text-align: center;
-    padding-top: 300px;
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
 }
 
-div.welcome {
+.navbar .navbar-header {
   text-align: center;
-  font-size: 12pt;
-  padding-bottom: 100px;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
+
+/* Cover page css start */
+div.header {
+  margin: 0px;
+  padding-top: 25px;
+  height: 120px;
+  background-color: #CC0000;
+}
+div.landing {
+  text-align: center;
+  padding-top: 100px;
 }
 
 div.button {
