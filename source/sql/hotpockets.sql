@@ -10,7 +10,7 @@ create database hotpockets;
 --drop children and drop them hard
 drop table if exists admin;
 drop table if exists majors;
-drop table if exitst minors;
+drop table if exists minors;
 drop table if exists transfer;
 --drop the parents--
 drop table if exists dcc;
@@ -49,27 +49,31 @@ create table dcc(
 );
 create table marist(
   crn serial not null,
-  subject text,
-  course_num int,
-  course_title int,
-  primary key(crn)
+  subject text not null,
+  course_num text not null,
+  course_title text,
+  credits int,
+  primary key(crn, subject, course_num)
 );
 create table majors(
   major_id serial not null,
-  crn int not null references marist(crn),
+  course_num text not null references marist(course_num),
+  subject text not null references marist(subject),
   major_name text,
   credits int,
   primary key(major_id)
 );
 create table minors(
   minor_id serial not null,
-  crn serial not null references marist(crn),
+  course_num text not null references marist(course_num),
+  subject text not null references marist(subject),
   major_name text,
   primary key(minor_id)
 );
 create table transfer(
   transfer_id serial not null,
-  crn serial not null references marist(crn),
+  course_num text not null references marist(course_num),
+  subject text not null references marist(subject),
   dcrn serial not null references dcc(dcrn),
   user_id serial not null references users(user_id),
   course_cem cem,
