@@ -18,13 +18,15 @@ drop table if exists users;
 drop table if exists marist;
 
 
+--droping the uniqueness--
+drop index if exists course;
+
+
 --drop enums--
 drop type cem;
 
 --creating enum--
 create type cem as enum ('core', 'elective', 'major');
-
-
 
 
 --creating tables whoot whoot mother fuckers--
@@ -49,33 +51,36 @@ create table dcc(
 );
 create table marist(
   crn serial not null,
-  subject text not null,
-  course_num text not null,
+  subject text,
+  course_num text,
   course_title text,
   credits int,
-  primary key(crn, subject, course_num)
+  primary key(crn)
 );
+--creating uniqueness--
+create unique index course on marist (course_num, subject);
+
 create table majors(
   major_id serial not null,
-  course_num text not null references marist(course_num),
-  subject text not null references marist(subject),
+  course_num text references marist(course_num),
+  subject text references marist(subject),
   major_name text,
   credits int,
-  primary key(major_id, course_num, subject)
+  primary key(major_id)
 );
 create table minors(
   minor_id serial not null,
-  course_num text not null references marist(course_num),
-  subject text not null references marist(subject),
+  course_num text references marist(course_num),
+  subject text references marist(subject),
   major_name text,
-  primary key(minor_id, course_num, subject)
+  primary key(minor_id)
 );
 create table transfer(
   transfer_id serial not null,
-  course_num text not null references marist(course_num),
-  subject text not null references marist(subject),
+  course_num text references marist(course_num),
+  subject text references marist(subject),
   dcrn serial not null references dcc(dcrn),
   user_id serial not null references users(user_id),
   course_cem cem,
-  primary key (transfer_id, course_num, subject, dcrn, user_id)
+  primary key (transfer_id)
 );
