@@ -61,14 +61,14 @@ create table majors(
   subject text not null references marist(subject),
   major_name text,
   credits int,
-  primary key(major_id)
+  primary key(major_id, course_num, subject)
 );
 create table minors(
   minor_id serial not null,
   course_num text not null references marist(course_num),
   subject text not null references marist(subject),
   major_name text,
-  primary key(minor_id)
+  primary key(minor_id, course_num, subject)
 );
 create table transfer(
   transfer_id serial not null,
@@ -77,5 +77,5 @@ create table transfer(
   dcrn serial not null references dcc(dcrn),
   user_id serial not null references users(user_id),
   course_cem cem,
-  primary key (transfer_id)
+  primary key (transfer_id, course_num, subject, dcrn, user_id)
 );
