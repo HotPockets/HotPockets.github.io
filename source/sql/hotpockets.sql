@@ -55,7 +55,8 @@ create table marist(
   course_num text,
   course_title text,
   credits int,
-  primary key(crn)
+  primary key(crn),
+  unique (subject, course_num)
 );
 --creating uniqueness--
 create unique index course on marist (course_num, subject);
