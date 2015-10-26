@@ -6,6 +6,7 @@ package com.barnett.catalog;
 import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.sql.*;
 
 
 /**
@@ -35,6 +36,15 @@ public class MaristCatalogParser {
 			String courseNum = "";
 			Pattern p;
 			Matcher m;
+			
+			//connection shit
+			Connection con = null;
+			Statement state = null;
+			ResultSet rs = null;
+			
+			String url = "jdbc:postgresql://localhost/postgres";
+			String user = "postgres";
+			String pass = "hotpockets";
 			
 			//Main Read Loop
 			while((line = reader.readLine()) != null){
@@ -74,6 +84,16 @@ public class MaristCatalogParser {
 									m = p.matcher(line);
 									m.lookingAt();
 									subject = m.group();
+								}
+								try {
+									con = DriverManager.getConnection(url, user, pass);
+									/*/state = con.createStatement();
+									rs = state.executeQuery("SELECT * FROM marist");
+									while (rs.next()){
+										System.out.println("CRN: " + rs.getString("crn"));
+									}/*/
+								}catch (SQLException ex){
+									System.out.println("screw you buddy");
 								}
 								
 								courseNum = line.substring(m.end() + 1, m.end() + 4);
