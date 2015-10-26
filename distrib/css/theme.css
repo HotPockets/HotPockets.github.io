@@ -62,3 +62,10 @@ div.footer {
     text-align: center;
 }
 /* Cover page css end */
+
+/* Login page css */
+
+div.login-group{
+  padding-top: 50px;
+  width: 50%;
+}
