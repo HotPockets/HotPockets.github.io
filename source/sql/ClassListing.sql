@@ -694,7 +694,7 @@ INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('CSBR','250
 
 INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('CSIR','250','IRISH LIFE & CULTURES','3');
 
-INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('CSIT','110','FLORENCE\'S FOUR QUARTERS','3');
+INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('CSIT','110','FLORENCES FOUR QUARTERS','3');
 
 INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('CSIT','250','CIVILIZ OF ITALY','3');
 
@@ -708,7 +708,7 @@ INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('ECON','304
 
 INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('ECON','422','FINANCIAL MARKETS','3');
 
-INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('ECON','432','INT\'L FIN POL+ISSUES','3');
+INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('ECON','432','INT FIN POL+ISSUES','3');
 
 INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('ECON','442','INTERNATION ECON','3');
 
@@ -742,7 +742,7 @@ INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('EDUC','354
 
 INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('EDUC','355','TCH READ+WRIT CNT AREA','3');
 
-INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('EDUC','357','CHILDREN\'S MENTOR TEXT','3');
+INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('EDUC','357','CHILDRENS MENTOR TEXT','3');
 
 INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('EDUC','372','INCLUSIVE ADOLESCENCE EDUC','3');
 
@@ -818,7 +818,7 @@ INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('ENG','292'
 
 INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('ENG','292','ST:INTRO TO HOLOCAUST LIT','3');
 
-INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('ENG','293','ST: INTRO TO VETERANS\' LIT','3');
+INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('ENG','293','ST: INTRO TO VETERANS LIT','3');
 
 INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('ENG','301','HIST ENG LANG','3');
 
@@ -1122,7 +1122,7 @@ INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('HIST','227
 
 INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('HIST','228','AMER SINCE 1945','3');
 
-INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('HIST','232','U.S.WOMEN\'S HIST','3');
+INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('HIST','232','U.S.WOMENS HIST','3');
 
 INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('HIST','244','ANCIENT GREECE','3');
 
@@ -1220,7 +1220,7 @@ INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('HST','238'
 
 INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('HST','241','MAKING OF MODERN EUROPE','3');
 
-INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('HST','242','THE 60\'S-GLBAL MVTMNT','3');
+INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('HST','242','THE 60S-GLBAL MVTMNT','3');
 
 INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('HST','246','CATH CHURCH-ITALY','3');
 
@@ -1344,7 +1344,7 @@ INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('LIT','292'
 
 INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('LIT','306','AGE OF HEROES:ILIAD,ODYSSEY','3');
 
-INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('LIT','315','SHAKESPEARE\'S ITALY','3');
+INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('LIT','315','SHAKESPEARES ITALY','3');
 
 INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('LIT','317','WOMEN CHRCTRS-20TH CENT FICT','3');
 
@@ -1584,7 +1584,7 @@ INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('MUS','250'
 
 INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('MUS','251','MC SINGERS-WOMEN','1');
 
-INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('MUS','252','MC FRESH WMAN\'S CHOIR','1');
+INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('MUS','252','MC FRESH WMANS CHOIR','1');
 
 INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('MUS','253','MC CHAPEL CHOIR','1');
 
@@ -2056,7 +2056,7 @@ INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('WMST','220
 
 INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('WMST','232','SEX,EVOLUTION BE','3');
 
-INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('WMST','233','U.S. WOMEN\'S HISTORY','3');
+INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('WMST','233','U.S. WOMENS HISTORY','3');
 
 INSERT INTO marist (subject,course_num,course_title,credits) VALUES ('WMST','267','WOMEN IN ASIA','3');
 

@@ -12,6 +12,7 @@ drop table if exists admin;
 drop table if exists majors;
 drop table if exists minors;
 drop table if exists transfer;
+
 --drop the parents--
 drop table if exists dcc;
 drop table if exists users;
@@ -55,31 +56,24 @@ create table marist(
   course_num text,
   course_title text,
   credits int,
-  primary key(crn),
-  unique (subject, course_num)
+  primary key(crn)
 );
---creating uniqueness--
-create unique index course on marist (course_num, subject);
-
 create table majors(
   major_id serial not null,
-  course_num text references marist(course_num),
-  subject text references marist(subject),
+  crn serial references not null marist(subject),
   major_name text,
   credits int,
   primary key(major_id)
 );
 create table minors(
   minor_id serial not null,
-  course_num text references marist(course_num),
-  subject text references marist(subject),
+  crn serial references not null marist(crn),
   major_name text,
   primary key(minor_id)
 );
 create table transfer(
   transfer_id serial not null,
-  course_num text references marist(course_num),
-  subject text references marist(subject),
+  crn serial references not null marist(crn),
   dcrn serial not null references dcc(dcrn),
   user_id serial not null references users(user_id),
   course_cem cem,
