@@ -60,20 +60,19 @@ create table marist(
 );
 create table majors(
   major_id serial not null,
-  crn serial references not null marist(subject),
+  crn serial not null references marist(crn),
   major_name text,
-  credits int,
   primary key(major_id)
 );
 create table minors(
   minor_id serial not null,
-  crn serial references not null marist(crn),
+  crn serial not null references marist(crn),
   major_name text,
   primary key(minor_id)
 );
 create table transfer(
   transfer_id serial not null,
-  crn serial references not null marist(crn),
+  crn serial not null references marist(crn),
   dcrn serial not null references dcc(dcrn),
   user_id serial not null references users(user_id),
   course_cem cem,
