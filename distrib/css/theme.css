@@ -1,7 +1,11 @@
-
+html, body{
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
 
 .theme-dropdown .dropdown-menu {
-  position: static;
+  position: relative;
   display: block;
 }
 
@@ -15,8 +19,10 @@
 
 .navbar .navbar-nav {
   display: inline-block;
-  float: none;
-  vertical-align: top;
+  float: center;
+  margin-top: 135px;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 .navbar .navbar-header {
@@ -27,50 +33,79 @@
   text-align: center;
 }
 
-
-/* Cover page css start */
-div.container{
-  position: static;
+.navbar .btn-group .btn {
+  color: white;
+  font-size: 18pt;
+  background: linear-gradient(black,gray,black);
 }
+
+div.container {
+  position: relative;
+}
+
+div.page {
+  min-height: 100%;
+  position: relative;
+  height: 100%;
+}
+
 div.header {
   margin: 0px;
   padding-top: 10px;
   padding-bottom: 10px;
-  height: 100px;
-  background-color: #CC0000;
-  font-size: 50pt;
-  color: white;
+  background-color: #333333;
+  height: 225px;
+  width: 100%;
 }
+
 div.landing {
   text-align: center;
-  padding-top: 50px;
-  background: linear-gradient(white, silver);
-  width: 75%;
-  height: 700px;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
-
-}
-
-.navbar .btn-group .btn{
-  color: black;
-  font-size: 22pt;
-}
-
-div.button {
-    text-align: center;
+  margin-top: -50px;
+  background: linear-gradient(gray,silver,white);
+  min-height: 90%;
+  border-top-color: black;
 }
 
 div.footer {
-    text-align: center;
+  postion: fixed;
+  width: 70%;
+  margin-right:auto;
+  margin-left:auto;
+  height 20px;
+  background-color: gray;
+  text-align: center;
+  color: black;
 }
-/* Cover page css end */
 
-/* Login page css */
+div.button {
+  text-algin: center;
+}
 
-div.login-group{
-  padding-top: 50px;
-  width: 35%;
-  padding-left: 10%;
+div.header img {
+  float: right;
+  margin-top: 15px;
+  margin-right: 25px;
+  display: inline;
+}
 
+div.header h2 {
+  text-align: center;
+  font-size: 60px;
+  float: left;
+  margin-top: 35px;
+  margin-left: 35px;
+}
+
+div.navbar {
+  position: relative;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  height: 20px;
+  text-align: center;
+  padding-top: 10px;
 }
