@@ -47,6 +47,15 @@ div.header {
 div.landing {
   text-align: center;
   padding-top: 50px;
+<<<<<<< HEAD
+=======
+  background: linear-gradient(white, silver);
+  width: 75%;
+  height: 700px;
+  margin-left: auto;
+  margin-right: auto;
+
+>>>>>>> b38f4abcc15918ff5461ce6690bf9f466244f858
 }
 
 .navbar .btn-group .btn{
@@ -62,3 +71,15 @@ div.footer {
     text-align: center;
 }
 /* Cover page css end */
+<<<<<<< HEAD
+=======
+
+/* Login page css */
+
+div.login-group{
+  padding-top: 50px;
+  width: 35%;
+  padding-left: 10%;
+
+}
+>>>>>>> b38f4abcc15918ff5461ce6690bf9f466244f858
