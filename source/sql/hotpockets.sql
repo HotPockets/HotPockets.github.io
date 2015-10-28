@@ -46,29 +46,34 @@ create table admin(
 create table dcc(
   dcrn serial not null,
   subject text,
-  course_num int,
+  course_num text,
   course_title text,
   primary key(dcrn)
 );
 create table marist(
   crn serial not null,
-  subject text,
-  course_num text,
+  subject text not null,
+  course_num text not null,
   course_title text,
   credits int,
-  primary key(crn)
+  primary key(subject, course_num),
+  unique(crn)
 );
 create table majors(
   major_id serial not null,
-  crn serial not null references marist(crn),
+  subject text not null,
+  course_num text not null,
   major_name text,
-  primary key(major_id)
+  primary key(major_id),
+  foreign key(subject, course_num) references marist(subject, course_num)
 );
 create table minors(
   minor_id serial not null,
-  crn serial not null references marist(crn),
-  major_name text,
-  primary key(minor_id)
+  subject text not null,
+  course_num text not null,
+  minor_name text,
+  primary key(minor_id),
+  foreign key(subject, course_num) references marist(subject, course_num)
 );
 create table transfer(
   transfer_id serial not null,

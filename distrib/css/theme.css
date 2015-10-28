@@ -1,8 +1,14 @@
-
+html, body {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  background: linear-gradient(white, gray);
+}
 
 .theme-dropdown .dropdown-menu {
   position: static;
   display: block;
+  margin-bottom: 20px;
 }
 
 .theme-showcase > p > .btn {
@@ -28,35 +34,26 @@
 }
 
 
+
 /* Cover page css start */
-div.container{
-  position: static;
-}
 div.header {
   margin: 0px;
   padding-top: 10px;
   padding-bottom: 10px;
-  height: 100px;
+  height: 125px;
   background-color: #CC0000;
   font-size: 50pt;
-  color: white;
 }
 div.landing {
   text-align: center;
   padding-top: 50px;
-  background: linear-gradient(white, gray);
-  width: 80%;
-  height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-
 }
 
 .navbar .btn-group .btn{
   color: black;
   font-size: 22pt;
-}
 
+}
 div.button {
     text-align: center;
 }
@@ -65,10 +62,3 @@ div.footer {
     text-align: center;
 }
 /* Cover page css end */
-
-/* Login page css */
-
-div.login-group{
-  padding-top: 50px;
-  width: 50%;
-}
