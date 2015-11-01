@@ -5,37 +5,86 @@
 <!-- Link to Jquery -->
 <script src="./distrib/scripts/jquery-1.11.3.min.js"></script>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="./distrib/css/bootstrap.min.css">
 <!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="./distrib/css/bootstrap-theme.min.css">
 <!-- Custom styles for this template -->
 <link href="./distrib/css/theme.css" rel="stylesheet">
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>
         Marist College Unofficial Credit Transfer Evaluator
       </title>
   </head>
   <body>
-    <div class="header" id="pageHeading" align="center">
-      <p>Marist</p>
-    </div>
-      <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <div class="btn-group">
-              <a href="index.html" class="btn btn-lg btn-lg active" type="button">Home</a>
-              <a href="userprofile.html" class="btn btn-lg" type="button">Profile</a>
-              <a href="courses.html" class="btn btn-lg" type="button">Course List</a>
-              <a href="help.html" class="btn btn-lg" type="button">Help</a>
-            </div>
-            </ul>
-          </div>
+    <div class="page">
+      <div class="header">
+        <a href="">
+          <img src="./distrib/img/seal.jpg" alt="MaristLogo" style="width:180px;height:150px;">
+        </a>
+        <h2><img src="./distrib/img/logo.png" alt="Marist" style="width:300px;height:60px;"></h2>
+      </div>
+      <nav class="navbar navbar-inverse" style="border-radius:0px;">
+        <div class="btns">
+          <a href="index.html" class="btn btn-lg btn-lg active" type="button">Home</a>
+          <a href="userprofile.html" class="btn btn-lg active" type="button">Profile</a>
+          <a href="courses.html" class="btn btn-lg active" type="button">Course List</a>
+          <a href="contact.html" class="btn btn-lg active" type="button">Contact</a>
+          <a href="help.html" class="btn btn-lg active" type="button">Help</a>
         </div>
       </nav>
+      <div class="landing">
+        <br>
+        <br>
+        <div class="login-label">
+          <h2>Login</h2>
+        </div>
+        <form class="form-inline">
+          <div class="form-group">
+            <label class="sr-only" for="exampleInputEmail3">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="exampleInputPassword3">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> Remember me
+            </label>
+          </div>
+          <button type="submit" class="btn btn-danger">Login</button>
+        </form>
+        <br>
+        <br>
+        <br>
+        <div class="signup-label">
+          <h2>Sign Up</h2>
+        </div>
+        <form class="form-horizontal">
+          <div class="login-group">
+            <input type="first_name" class="form-control" id="Inputfname" placeholder="First Name">
+            <br>
+            <input type="last_name" class="form-control" id="Inputlname" placeholder="Last Name">
+            <br>
+            <input type="email" class="form-control" id="InputEmail" placeholder="Email">
+            <br>
+            <input type="password1" class="form-control" id="InputPassword1" placeholder="Password">
+            <br>
+            <input type="password2" class="form-control" id="InputPassword2" placeholder="Retype Password">
+          <br>
+        <a href="courses.html" class="btn btn-danger">Sign Up</a>
+      </form>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>Copyright&#169 Team Hot Pockets 2015</p>
+      </div>
+    </div>
+  </div>
+<!--
       <div class="landing">
         <form class="form-horizontal">
     <div class="login-group">
@@ -57,13 +106,16 @@
       <div class="footer">
         <p>Copyright&#169 Team Hot Pockets 2015</p>
       </div>
+-->
 
-  <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
-</html>
+
+
+      <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="distrib/js/bootstrap.min.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+    </body>
+  </html>
