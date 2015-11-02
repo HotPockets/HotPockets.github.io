@@ -70,11 +70,11 @@ div.landing {
   margin-top: -20px;
   background: linear-gradient(gray,silver,white);
   min-height: 70%;
-  border-top-color: black;
 }
 
 div.footer {
   width: 80%;
+  margin-top: 10%;
   margin-right:auto;
   margin-left:auto;
   height 20px;
@@ -90,8 +90,8 @@ div.button {
 
 div.header img {
   float: right;
-  margin-top: 15px;
-  margin-right: 25px;
+  margin-top: 10px;
+  margin-right: 50px;
   display: inline;
 }
 
@@ -100,7 +100,7 @@ div.header h2 {
   font-size: 60px;
   float: left;
   margin-top: 35px;
-  margin-left: 35px;
+  margin-left: 50px;
 }
 
 div.navbar {
