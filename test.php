@@ -17,7 +17,7 @@ $pageName = "Found Page";
 ?>
 <div id="bottom">
 <?php
-require 'connect_db.php'; # gets db connection
+require 'connect.php'; # gets db connection
 #require( 'includes/helpers.php' ) ; #gets helpers function
 ?>
 <div id="tholder">
