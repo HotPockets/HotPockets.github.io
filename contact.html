@@ -16,6 +16,7 @@
         Marist College Unofficial Credit Transfer Evaluator
       </title>
   </head>
+  <body>
   <div class="page">
     <div class="header">
       <a href="">
@@ -32,10 +33,84 @@
         <a href="help.html" class="btn btn-lg active" type="button">Help</a>
       </div>
     </nav>
+
+
     <div class="landing">
+      <h3 class="text-center">Contact</h3>
+      <p class="text-center"><em>We are happy to answer any question's you may have. You may contact us through our contact information listed below or write a form to us directly.</em></p>
+      <br>
+      <div class="row test">
+        <div class="col-sm-6">
+          <p><strong><u>Information:</u></strong></p>
+          <p><span class="glyphicon glyphicon-map-marker"></span>Poughkeepsie, NY</p>
+          <p><span class="glyphicon glyphicon-phone"></span>Phone: 845 555-5555</p>
+          <p><span class="glyphicon glyphicon-envelope"></span>Email: GUI@marist.sucks</p>
+        </div>
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col-sm-6 form-group">
+              <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+            </div>
+            <div class="col-sm-6 form-group">
+              <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+            </div>
+          </div>
+          <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <button class="btn pull-right" type="submit">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <style>
+    #googleMap {
+        width: 80%; /* Span the entire width of the screen */
+        height: 300px; /* Set the height to 400 pixels */
+        position: fixed;
+        top: -185px;
+        right: -128px;
+
+    }
+    </style>
+
+    <div id="googleMap"></div>
+
+    <!-- Add Google Maps -->
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script>
+    var myCenter = new google.maps.LatLng(41.722815, -73.934482);
+
+    function initialize() {
+    var mapProp = {
+    center:myCenter,
+    zoom:16,
+    scrollwheel:false,
+    draggable:false,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+    var marker = new google.maps.Marker({
+    position:myCenter,
+    });
+
+    marker.setMap(map);
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+    </div>
+
+
     <div class="footer">
       <p>Copyright&#169 Team Hot Pockets 2015</p>
     </div>
   </div>
+
+</body>
 </html>
