@@ -158,3 +158,11 @@ div.carousel-inner img{
     margin-left: auto;
     margin-right: auto;
 }
+
+/*test for pop up*/
+
+div.popup{
+  background-color: gray;
+  height: 100%;
+  text-align: center;
+}
