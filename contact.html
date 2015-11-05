@@ -12,6 +12,7 @@
 <link href="./distrib/css/theme.css" rel="stylesheet">
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>
         Marist College Unofficial Credit Transfer Evaluator
       </title>
@@ -36,17 +37,20 @@
 
 
     <div class="landing">
-      <h3 class="text-center">Contact</h3>
-      <p class="text-center"><em>We are happy to answer any question's you may have. You may contact us through our contact information listed below or write a form to us directly.</em></p>
+      <br><br><br>
+      <h2 class="text-center">Contact</h2>
+      <p class="text-center"><em>We are happy to answer any questions you may have. You may contact us through our contact information listed below, or write a form to us directly.</em></p>
       <br>
-      <div class="row test">
-        <div class="col-sm-6">
-          <p><strong><u>Information:</u></strong></p>
-          <p><span class="glyphicon glyphicon-map-marker"></span>Poughkeepsie, NY</p>
-          <p><span class="glyphicon glyphicon-phone"></span>Phone: 845 555-5555</p>
-          <p><span class="glyphicon glyphicon-envelope"></span>Email: GUI@marist.sucks</p>
+      <div class="col-sm-3">
+    </div>
+      <div class="row" style="text-align:left">
+        <div class="col-sm-3">
+          <p><strong>Information:</strong></p>
+          <p><span class="glyphicon glyphicon-map-marker" style="color:#CB3D39">&nbsp</span>Poughkeepsie, NY</p>
+          <p><span class="glyphicon glyphicon-phone" style="color:#CB3D39">&nbsp</span>Phone: (845)555-5555</p>
+          <p><span class="glyphicon glyphicon-envelope" style="color:#CB3D39">&nbsp</span>Email: GUI@marist.sucks</p>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-3">
           <div class="row">
             <div class="col-sm-6 form-group">
               <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
@@ -58,59 +62,47 @@
           <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
           <div class="row">
             <div class="col-md-12 form-group">
-              <button class="btn pull-right" type="submit">Send</button>
+              <br>
+              <div class="col-sm-5">
+            </div>
+              <button class="btn btn-danger" type="submit">Send</button>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <br><br>
+      <div id="googleMap">
+      </div>
+      <!-- Add Google Maps -->
+      <script src="http://maps.googleapis.com/maps/api/js"></script>
+      <script>
+      var myCenter = new google.maps.LatLng(41.722815, -73.934482);
 
-    <style>
-    #googleMap {
-        width: 80%; /* Span the entire width of the screen */
-        height: 300px; /* Set the height to 400 pixels */
-        position: fixed;
-        top: -185px;
-        right: -128px;
+      function initialize() {
+      var mapProp = {
+      center:myCenter,
+      zoom:16,
+      scrollwheel:false,
+      draggable:false,
+      mapTypeId:google.maps.MapTypeId.ROADMAP
+      };
 
-    }
-    </style>
+      var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
-    <div id="googleMap"></div>
+      var marker = new google.maps.Marker({
+      position:myCenter,
+      });
 
-    <!-- Add Google Maps -->
-    <script src="http://maps.googleapis.com/maps/api/js"></script>
-    <script>
-    var myCenter = new google.maps.LatLng(41.722815, -73.934482);
+      marker.setMap(map);
+      }
 
-    function initialize() {
-    var mapProp = {
-    center:myCenter,
-    zoom:16,
-    scrollwheel:false,
-    draggable:false,
-    mapTypeId:google.maps.MapTypeId.ROADMAP
-    };
-
-    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
-    var marker = new google.maps.Marker({
-    position:myCenter,
-    });
-
-    marker.setMap(map);
-    }
-
-    google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
+      google.maps.event.addDomListener(window, 'load', initialize);
+      </script>
 
     </div>
-
 
     <div class="footer">
       <p>Copyright&#169 Team Hot Pockets 2015</p>
     </div>
-  </div>
-
-</body>
+  </body>
 </html>
