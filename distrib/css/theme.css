@@ -159,10 +159,43 @@ div.carousel-inner img{
     margin-right: auto;
 }
 
-/*test for pop up*/
+/*Index user pop up*/
 
 div.popup{
   background-color: gray;
   height: 100%;
   text-align: center;
+}
+
+/*Test on course list*/
+div.holder{
+  width: 60%;
+  height: 350px;
+  background: linear-gradient(#333333, gray, #333333);
+  margin-left: auto;
+  margin-right: auto;
+  color:white;
+  border-radius: 25px;
+}
+
+/*test on help.html*/
+
+div.left {
+  width: 30%;
+  height: 350px;
+  background: linear-gradient(#333333, gray, #333333);
+  margin-left: 15%;
+  margin-top: 50px;
+  color:white;
+  border-radius: 25px;
+}
+
+div.right {
+  width: 30%;
+  height: 350px;
+  background: linear-gradient(#333333, gray, #333333);
+  margin-left: 55%;
+  margin-top: -350px;
+  color:white;
+  border-radius: 25px;
 }
