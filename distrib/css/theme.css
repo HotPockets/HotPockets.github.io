@@ -177,3 +177,8 @@ div.holder{
   color:white;
   border-radius: 25px;
 }
+
+.carousel-caption {
+    top: 0;
+    bottom: auto;
+}
