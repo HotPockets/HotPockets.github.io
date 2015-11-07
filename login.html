@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="./distrib/css/bootstrap-theme.min.css">
 <!-- Custom styles for this template -->
 <link href="./distrib/css/theme.css" rel="stylesheet">
+
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,29 +43,29 @@
               </div>
               <div class="col-sm-5">
                 <h2>Login</h2>
-                <form class="form-horizontal">
-                  <input type="email" class="form-control" id="InputEmail" placeholder="Email">
+                <form class="form-horizontal" method="post">
+                  <input type="email" class="form-control" id="InputEmail" name="loginEmail" placeholder="Email">
                   <br>
-                  <input type="password1" class="form-control" id="InputPassword1" placeholder="Password">
+                  <input type="password" class="form-control" id="InputPassword1" name="loginPassword" placeholder="Password">
                   <br>
-                  <a href="profile.html" class="btn btn-danger">Login</a>
+                  <input class="btn btn-danger" type="submit" value="Login" name="login">
                 </form>
               </div>
 
               <div class="col-sm-5">
                 <form class="form-horizontal">
                   <h2>Sign Up</h2>
-                  <input type="first_name" class="form-control" id="Inputfname" placeholder="First Name">
+                  <input type="first_name" class="form-control" id="Inputfname" name="signUpFirst" placeholder="First Name">
                   <br>
-                  <input type="last_name" class="form-control" id="Inputlname" placeholder="Last Name">
+                  <input type="last_name" class="form-control" id="Inputlname" name="signUpLast" placeholder="Last Name">
                   <br>
-                  <input type="email" class="form-control" id="InputEmail" placeholder="Email">
+                  <input type="email" class="form-control" id="InputEmail" name="signUpEmail" placeholder="Email">
                   <br>
-                  <input type="password1" class="form-control" id="InputPassword1" placeholder="Password">
+                  <input type="password" class="form-control" id="InputPassword1" name="signUpPassword" placeholder="Password">
                   <br>
-                  <input type="password2" class="form-control" id="InputPassword2" placeholder="Retype Password">
+                  <input type="password" class="form-control" id="InputPassword2" name="signUpConfirmPassword"  placeholder="Retype Password">
                   <br>
-                  <a href="profile.html" class="btn btn-danger">Sign Up</a>
+                  <a href="profile.html" class="btn btn-danger" type="submit">Sign Up</a>
                 </form>
               </div>
 
@@ -83,4 +84,21 @@
           <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
           <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
   </body>
+  <?php
+    require( '../php/functions.php' );
+
+    if (isset($_POST['login'])) {
+    	$name = $_POST['loginEmail'];
+    	$password = $_POST['loginPassword'];
+
+      $pid = validate($name, $password);
+
+      if($pid > -1){
+        echo '<p style=color:red>Login failed please try again.</p>';
+  	   } else {
+        echo '<p style=color:green>Login successful!.</p>';
+        #load('profile.html', $pid);
+    	}
+    }
+  ?>
 </html>
