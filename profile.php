@@ -28,7 +28,7 @@
         <nav class="navbar navbar-inverse" style="border-radius:0px;">
           <div class="btns">
             <a href="index.html" class="btn btn-lg btn-lg active" type="button">Home</a>
-            <a href="profile.html" class="btn btn-lg active" type="button">Profile</a>
+            <a href="profile.php" class="btn btn-lg active" type="button">Profile</a>
             <a href="courses.html" class="btn btn-lg active" type="button">Course List</a>
             <a href="contact.html" class="btn btn-lg active" type="button">Contact</a>
             <a href="help.html" class="btn btn-lg active" type="button">Help</a>
@@ -44,7 +44,23 @@
             </div>
           </div>
           <br><br>
-          <a href="courses.html" class="btn btn-lg btn-danger">Input More Courses</a>
+          <form class="form-horizontal" method="post">
+            <a href="courses.html" class="btn btn-lg btn-danger">Input More Courses</a>
+            <input class="btn btn-lg btn-danger" type="submit" name="logout" value="Log Out">
+          </form>
+          <?php
+          require( '../php/connect.php' );
+          require( '../php/functions.php' );
+          session_start();
+          if(intval($_SESSION['user_id']) == "" ){
+            load("login.php", -1);
+          } else {
+            console_log("Logged in with PID " . $_SESSION['user_id']);
+          }
+          if (isset($_POST['logout'])) {
+            logOut();
+          }
+          ?>
         </div>
 
               <div class="footer">

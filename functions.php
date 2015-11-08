@@ -5,20 +5,16 @@ require( 'connect.php' );
 function validate($prname = '', $prpass = '')
 {
     global $dbc;
-    echo "Starting validation";
   if(empty($prname)){
-    echo "Name is empty";
     return -1 ;
   }
 	if(empty($prpass)){
-    echo "Password is empty";
     return -1 ;
   }
 
 
     # Make the query
     $query = "SELECT login('$prname', '$prpass')" ;
-    echo "Query: " . $query;
 
     # Execute the query
     $results = pg_query( $dbc, $query ) ;
@@ -26,7 +22,6 @@ function validate($prname = '', $prpass = '')
 
     # If we get no rows, the login failed
     if (pg_num_rows( $results ) == 0 ){
-      echo "No Results Found";
       return -1 ;
     }
 
@@ -42,8 +37,19 @@ function validate($prname = '', $prpass = '')
     }
 
     echo "Found PID: " . $pid;
-    echo "New String";
     return intval($pid) ;
+}
+########################################################################################################################
+function logOut(){
+// remove all session variables
+session_unset();
+
+// destroy the session
+session_destroy();
+
+header( "Location: index.html" ) ;
+
+exit();
 }
 ########################################################################################################################
 # Checks the query results as a debugging aid
@@ -53,11 +59,27 @@ function check_results($results) {
   if($results != true) {
     echo '<p>SQL ERROR = </p>'  ;
   } else {
-    echo 'We have RESULTS';
   }
 }
 ########################################################################################################################
-# Console.log()
+# Loads a specified or default URL.
+function load( $page = 'login.php', $pid = -1 )
+{
+  # Begin URL with protocol, domain, and current directory.
+  $url = 'http://' . $_SERVER[ 'HTTP_HOST' ] . dirname( $_SERVER[ 'PHP_SELF' ] ) ;
+
+  # Remove trailing slashes then append page name to URL and the print id.
+  $url = rtrim( $url, '/\\' ) ;
+  $url .= '/' . $page;
+
+  # Execute redirect then quit.
+  $_SESSION['user_id'] = $pid;
+  header( "Location: $url" ) ;
+
+  exit() ;
+}
+########################################################################################################################
+# Used to print out to the Javascript Console
 function console_log($data) {
   echo '<script>';
   echo 'console.log(' . json_encode( $data ) . ')';
