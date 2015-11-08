@@ -85,15 +85,16 @@
           <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
   </body>
   <?php
+    require( '../php/connect.php' );
     require( '../php/functions.php' );
-
+    console_log("Test");
     if (isset($_POST['login'])) {
     	$name = $_POST['loginEmail'];
     	$password = $_POST['loginPassword'];
 
       $pid = validate($name, $password);
 
-      if($pid > -1){
+      if($pid == -1){
         echo '<p style=color:red>Login failed please try again.</p>';
   	   } else {
         echo '<p style=color:green>Login successful!.</p>';
