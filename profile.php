@@ -52,7 +52,7 @@
           require( '../php/connect.php' );
           require( '../php/functions.php' );
           session_start();
-          if(intval($_SESSION['user_id']) == "" ){
+          if(intval($_SESSION['user_id']) == "" || intval($_SESSION['user_id']) < 0){
             load("login.php", -1);
           } else {
             console_log("Logged in with PID " . $_SESSION['user_id']);
