@@ -50,6 +50,24 @@
                   <br>
                   <input class="btn btn-danger" type="submit" value="Login" name="login">
                 </form>
+                <?php
+                  require( '../php/connect.php' );
+                  require( '../php/functions.php' );
+                  session_start();
+                  if (isset($_POST['login'])) {
+                  	$name = $_POST['loginEmail'];
+                  	$password = $_POST['loginPassword'];
+
+                    $pid = validate($name, $password);
+
+                    if($pid == -1){
+                      echo '<p style=color:red>Login failed please try again.</p>';
+                	   } else {
+                       console_log("Logging in with PID " . $pid);
+                      load('profile.php', $pid);
+                  	}
+                  }
+                ?>
               </div>
 
               <div class="col-sm-5">
@@ -84,22 +102,4 @@
           <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
           <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
   </body>
-  <?php
-    require( '../php/connect.php' );
-    require( '../php/functions.php' );
-    console_log("Test");
-    if (isset($_POST['login'])) {
-    	$name = $_POST['loginEmail'];
-    	$password = $_POST['loginPassword'];
-
-      $pid = validate($name, $password);
-
-      if($pid == -1){
-        echo '<p style=color:red>Login failed please try again.</p>';
-  	   } else {
-        echo '<p style=color:green>Login successful!.</p>';
-        #load('profile.html', $pid);
-    	}
-    }
-  ?>
 </html>
