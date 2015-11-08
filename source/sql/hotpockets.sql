@@ -81,5 +81,6 @@ create table transfer(
   dcrn serial not null references dcc(dcrn),
   user_id serial not null references users(user_id),
   course_cem cem,
+  createDate date,
   primary key (transfer_id)
 );
