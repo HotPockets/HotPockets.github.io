@@ -9,6 +9,11 @@ input, label {
     margin:5px;
 }
 
+h1 {
+  font-size: 30pt;
+  font-family: arial black;
+}
+
 .theme-dropdown .dropdown-menu {
   position: relative;
   display: block;
