@@ -30,7 +30,7 @@
           <div class="btns">
             <a href="index.html" class="btn btn-lg btn-lg active" type="button">Home</a>
             <a href="profile.php" class="btn btn-lg active" type="button">Profile</a>
-            <a href="courses.html" class="btn btn-lg active" type="button">Course List</a>
+            <a href="courses.php" class="btn btn-lg active" type="button">Course List</a>
             <a href="contact.html" class="btn btn-lg active" type="button">Contact</a>
             <a href="help.html" class="btn btn-lg active" type="button">Help</a>
           </div>
@@ -59,15 +59,11 @@
 <select multiple="multiple" name="formCourses[]">
     <?php
     if (isset($_POST['formSubject'])) {
-      console_log("Selected Subject: " . $_POST['formSubject']);
+      $subject = $_POST['formSubject'];
+      console_log("Selected Subject: " . $subject);
+      getCourses($subject);
     }
     ?>
-    <option value="Accounting">Accounting</option>
-    <option value="Anthropology">Anthropology</option>
-    <option value="Arabic">Arabic</option>
-    <option value="Art">Art</option>
-    <option value="Art Studio - Ldm">Art Studio - Ldm</option>
-    <option value="Athletic Training">Athletic Training</option>
   </select>
 </form>
 </div>
