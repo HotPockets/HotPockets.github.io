@@ -11,6 +11,7 @@
 <!-- Custom styles for this template -->
 <link href="./distrib/css/theme.css" rel="stylesheet">
 <link rel="shortcut icon" type="image/ico" href="distrib/img/icon.png" />
+<script src="./distrib/js/functions.js"></script>
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -59,7 +60,7 @@
 <form class="form-horizontal">
     <br><br>
     <label for='formCourses[]'>Select the Courses</label><br>
-<select multiple="multiple" name="formCourses[]">
+<select multiple id="coursesSelectBox" name="formCourses[]">
     <?php
     if (isset($_POST['formSubject'])) {
       $subject = $_POST['formSubject'];
@@ -73,7 +74,7 @@
 
 <div class="col-sm-3">
   <br><br><br><br><br>
-    <a href="" class="btn btn-lg btn-danger">Add Course(s)</a>
+    <button class="btn btn-lg btn-danger" onclick="updateCourses(document.getElementById('coursesSelectBox'), document.getElementById('coursesOutputBox'));">Add Course(s)</button>
     <br><br><br>
     <a href="" class="btn btn-lg btn-danger">Remove Course(s)</a>
 </div>
@@ -84,7 +85,9 @@
 <div class="col-sm-5">
 <H1>Transfer Courses</H1>
 <form class="form-horizontal">
+  <select multiple="multiple" id="coursesOutputBox" name="outCourses[]">
 
+  </select>
   <!--
   <table class="table table-striped table-bordered">
   <tr>
@@ -114,7 +117,7 @@
   </tr>
   </table>
   -->
-  
+
 </form>
 </div>
 
