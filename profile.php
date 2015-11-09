@@ -45,7 +45,7 @@
           </div>
           <br><br>
           <form class="form-horizontal" method="post">
-            <a href="courses.html" class="btn btn-lg btn-danger">Input More Courses</a>
+            <a href="courses.php" class="btn btn-lg btn-danger">Input More Courses</a>
             <input class="btn btn-lg btn-danger" type="submit" name="logout" value="Log Out">
           </form>
           <?php
