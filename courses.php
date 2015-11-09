@@ -115,6 +115,12 @@
 </form>
 </div>
 
+</div>
+        <div class="footer">
+          <p>Copyright&#169 Team Hot Pockets 2015</p>
+        </div>
+  </div>
+
 
 </div>
 </html>

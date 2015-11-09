@@ -86,6 +86,7 @@
                   <a href="profile.html" class="btn btn-danger" type="submit">Sign Up</a>
                 </form>
               </div>
+            </div>
 
         </div>
       </div>
