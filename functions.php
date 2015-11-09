@@ -40,6 +40,22 @@ function validate($prname = '', $prpass = '')
     return intval($pid) ;
 }
 ########################################################################################################################
+function getSubjects(){
+  global $dbc;
+  console_log("Getting Subjects");
+  $query = "SELECT * FROM subject_dcc";
+
+  console_log($query);
+  echo $query;
+  $results = pg_query( $dbc, $query ) ;
+  check_results($results);
+
+  while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
+    $subject = (isset($row['subject']) ? $row['subject'] : null);
+    echo '<option value="' . $subject . '">' . $subject . '</option>';
+  }
+}
+########################################################################################################################
 function logOut(){
 // remove all session variables
 session_unset();
@@ -57,8 +73,9 @@ function check_results($results) {
   global $dbc;
 
   if($results != true) {
-    echo '<p>SQL ERROR = </p>'  ;
+    console_log("No Results from Query. Error: " . pg_last_error($dbc));
   } else {
+    console_log("Query Returned Results");
   }
 }
 ########################################################################################################################

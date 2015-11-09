@@ -39,19 +39,29 @@
   <br><br>
 <div class="col-sm-3">
   <br><br><br>
-  <form class="form-horizontal">
-    <label for='formSubject[]'>Select the subjet</label><br>
-<select multiple="multiple" name="formSubject[]">
-    <option value="Accounting">Accounting</option>
-    <option value="Anthropology">Anthropology</option>
-    <option value="Arabic">Arabic</option>
-    <option value="Art">Art</option>
-    <option value="Art Studio - Ldm">Art Studio - Ldm</option>
-    <option value="Athletic Training">Athletic Training</option>
-  </select>
+  <form class="form-horizontal" method="post">
+    <label for='formSubject'>Select the subject</label><br>
+    <select name="formSubject" onchange='this.form.submit()'
+    value="<?php if(isset($_POST['formSubject'])) echo $_POST['formSubject']; ?>">
+    <option value="none">--------</option>
+      <?php
+      require( '../php/connect.php' );
+      require( '../php/functions.php' );
+      session_start();
+      getSubjects();
+      ?>
+    </select>
+    <noscript><input type="submit" value="Submit"></noscript>
+</form>
+<form class="form-horizontal">
     <br><br>
     <label for='formCourses[]'>Select the Courses</label><br>
 <select multiple="multiple" name="formCourses[]">
+    <?php
+    if (isset($_POST['formSubject'])) {
+      console_log("Selected Subject: " . $_POST['formSubject']);
+    }
+    ?>
     <option value="Accounting">Accounting</option>
     <option value="Anthropology">Anthropology</option>
     <option value="Arabic">Arabic</option>
