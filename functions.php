@@ -40,6 +40,39 @@ function validate($prname = '', $prpass = '')
     return intval($pid) ;
 }
 ########################################################################################################################
+function getSubjects(){
+  global $dbc;
+  console_log("Getting Subjects");
+  $query = "SELECT * FROM subject_dcc";
+
+  console_log($query);
+  $results = pg_query($dbc, $query);
+  check_results($results);
+
+  while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
+    $subject = (isset($row['subject']) ? $row['subject'] : null);
+    echo '<option value="' . $subject . '">' . $subject . '</option>';
+  }
+}
+########################################################################################################################
+function getCourses($subject){
+  global $dbc;
+  console_log("Getting Courses for " . $subject);
+  $query = "SELECT course_num, course_title FROM dcc WHERE subject = '$subject';";
+
+  console_log($query);
+  $results = pg_query($dbc, $query);
+  check_results($results);
+
+  while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
+    $course_num = (isset($row['course_num']) ? $row['course_num'] : null);
+    console_log("Course Num: " . $course_num);
+    $course_title = (isset($row['course_title']) ? $row['course_title'] : null);
+    console_log("Course Title: " . $course_title);
+    echo '<option value="' . $course_num . '">' . $course_num . ' - ' . $course_title . '</option>';
+  }
+}
+########################################################################################################################
 function logOut(){
 // remove all session variables
 session_unset();
@@ -57,8 +90,9 @@ function check_results($results) {
   global $dbc;
 
   if($results != true) {
-    echo '<p>SQL ERROR = </p>'  ;
+    console_log("No Results from Query." . pg_last_error($dbc));
   } else {
+    console_log("Query Returned Results");
   }
 }
 ########################################################################################################################
