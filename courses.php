@@ -76,7 +76,7 @@
   <br><br><br><br><br>
     <button class="btn btn-lg btn-danger" onclick="updateCourses(document.getElementById('coursesSelectBox'), document.getElementById('coursesOutputBox'));">Add Course(s)</button>
     <br><br><br>
-    <a href="" class="btn btn-lg btn-danger">Remove Course(s)</a>
+    <button class="btn btn-lg btn-danger" onclick="removeSelectedOptions(document.getElementById('coursesOutputBox'));">Remove Course(s)</button>
 </div>
 
 <div class="col-sm-3">
@@ -119,6 +119,7 @@
   -->
 
 </form>
+<script>populateList(document.getElementById('coursesOutputBox'), outputList);</script>
 </div>
 
 </div>
