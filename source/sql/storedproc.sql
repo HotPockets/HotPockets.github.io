@@ -25,6 +25,23 @@ create or replace function login(email text, password text)
   $func$ language 'plpgsql';
 
 
+
+  create or replace function dcc_course (subject text,
+      out course_num text,
+      out course_title text
+    )returns setof record as $$
+
+    begin
+    return query
+    select d.course_num, d.course_title
+    from dcc d
+    where d.subject = $1
+    order by d.course_num asc;
+    end;
+
+    $$ language 'plpgsql';
+
+
 /*
   create or replace function profileList(user_id integer, out createDate date)returns setof date as $$
 
