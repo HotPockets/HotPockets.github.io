@@ -41,14 +41,17 @@
   <br><br><br>
   <form class="form-horizontal" method="post">
     <label for='formSubject'>Select the subject</label><br>
-    <select name="formSubject" onchange='this.form.submit()'
-    value="<?php if(isset($_POST['formSubject'])) echo $_POST['formSubject']; ?>">
+    <select name="formSubject" onchange='this.form.submit()'?>">
     <option value="none">--------</option>
       <?php
       require( '../php/connect.php' );
       require( '../php/functions.php' );
       session_start();
-      getSubjects();
+      if (isset($_POST['formSubject'])) {
+        getSubjects($_POST['formSubject']);
+      } else {
+        getSubjects();
+      }
       ?>
     </select>
     <noscript><input type="submit" value="Submit"></noscript>

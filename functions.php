@@ -40,7 +40,7 @@ function validate($prname = '', $prpass = '')
     return intval($pid) ;
 }
 ########################################################################################################################
-function getSubjects(){
+function getSubjects($currSubject){
   global $dbc;
   console_log("Getting Subjects");
   $query = "SELECT * FROM subject_dcc";
@@ -51,7 +51,9 @@ function getSubjects(){
 
   while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
     $subject = (isset($row['subject']) ? $row['subject'] : null);
-    echo '<option value="' . $subject . '">' . $subject . '</option>';
+    echo '<option value="' . $subject . '" ';
+    if($subject==$currSubject) echo 'selected="selected"';
+    echo '>' . $subject . '</option>';
   }
 }
 ########################################################################################################################
