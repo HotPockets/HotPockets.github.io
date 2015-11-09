@@ -84,33 +84,37 @@
 <div class="col-sm-5">
 <H1>Transfer Courses</H1>
 <form class="form-horizontal">
-<table class="table table-striped table-bordered">
-<tr>
-<th>Course Number</th>
-<th>Subject</th>
-<th>Course Name</th>
-</tr>
-<tr>
-<td>3333</td>
-<td>Sex Studies</td>
-<td>Boneritis</td>
-</tr>
-<tr>
-<td>6969</td>
-<td>Sex Studies</td>
-<td>Sexxy time</td>
-</tr>
-<tr>
-<td>3333</td>
-<td>Sex Studies</td>
-<td>Boneritis</td>
-</tr>
-<tr>
-<td>6969</td>
-<td>Sex Studies</td>
-<td>Sexxy time</td>
-</tr>
-</table>
+
+  <!--
+  <table class="table table-striped table-bordered">
+  <tr>
+    <th>Course Number</th>
+    <th>Subject</th>
+    <th>Course Name</th>
+  </tr>
+  <tr>
+    <td>3333</td>
+    <td>Sex Studies</td>
+    <td>Boneritis</td>
+  </tr>
+  <tr>
+    <td>6969</td>
+    <td>Sex Studies</td>
+    <td>Sexxy time</td>
+  </tr>
+  <tr>
+    <td>3333</td>
+    <td>Sex Studies</td>
+    <td>Boneritis</td>
+  </tr>
+  <tr>
+    <td>6969</td>
+    <td>Sex Studies</td>
+    <td>Sexxy time</td>
+  </tr>
+  </table>
+  -->
+  
 </form>
 </div>
 
