@@ -89,5 +89,6 @@ create table transcript(
   user_id serial not null references users(user_id),
   transfer_id serial not null references transfer(transfer_id),
   creatation_date date,
+  name text,
   primary key(trans_id)
 );
