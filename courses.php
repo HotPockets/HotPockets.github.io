@@ -4,6 +4,11 @@
 <!-- Bootstrap -->
 <!-- Link to Jquery -->
 <script src="./distrib/scripts/jquery-1.11.3.min.js"></script>
+<!-- Links to jsPDF -->
+<script type="text/javascript" src="distrib/js/jsPDF/jspdf.js"></script>
+<script type="text/javascript" src="distrib/js/jsPDF/libs/Deflate/adler32cs.js"></script>
+<script type="text/javascript" src="distrib/js/jsPDF/libs/FileSaver.js/FileSaver.js"></script>
+<script type="text/javascript" src="distrib/js/jsPDF/libs/Blob.js/BlobBuilder.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="./distrib/css/bootstrap.min.css">
 <!-- Optional theme -->
@@ -119,7 +124,29 @@
   -->
 
 </form>
-<script>populateList(document.getElementById('coursesOutputBox'), outputList);</script>
+<script>populateList(document.getElementById('coursesOutputBox'), outputList);
+/*
+var doc = new jsPDF();
+
+// I know the proper spelling is colour ;)
+doc.setTextColor(100);
+doc.text(20, 20, 'This is gray.');
+
+doc.setTextColor(150);
+doc.text(20, 30, 'This is light gray.');
+
+doc.setTextColor(255, 0, 0);
+doc.text(20, 40, 'This is red.');
+
+doc.setTextColor(0, 255, 0);
+doc.text(20, 50, 'This is green.');
+
+doc.setTextColor(0, 0, 255);
+doc.text(20, 60, 'This is blue.');
+
+doc.save('Test.pdf');
+*/
+</script>
 </div>
 
 </div>
