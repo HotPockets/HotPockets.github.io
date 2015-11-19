@@ -125,7 +125,7 @@
 
 </form>
 <script>populateList(document.getElementById('coursesOutputBox'), outputList);
-
+/*
 var doc = new jsPDF();
 
 doc.setTextColor(100);
@@ -139,7 +139,7 @@ doc.setTextColor(0, 0, 0);
 doc.text(38, 40, 'Unofficial Transfer Evaluation');
 
 doc.save('Test.pdf');
-
+*/
 </script>
 </div>
 
