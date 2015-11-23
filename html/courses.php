@@ -125,7 +125,7 @@ $("document").ready(function() {
      console.log("Selected " + selectedValue);
      //Post it to the file getCourses.php
     $.ajax({
-         url: 'source/php/getCourses.php',
+         url: '../php/getCourses.php',
          type: 'POST',
          data: {option : selectedValue},
          success: function() {
