@@ -128,8 +128,9 @@ $("document").ready(function() {
          url: 'source/php/getCourses.php',
          type: 'POST',
          data: {option : selectedValue},
-         success: function() {
+         success: function(data) {
              console.log("Data sent!");
+             $("#coursesSelectBox").html(data);
          },
          error: function (xhr, ajaxOptions, thrownError) {
            console.log(xhr.status);
