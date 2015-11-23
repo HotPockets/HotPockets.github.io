@@ -79,6 +79,7 @@ function getCourses($subject){
 ########################################################################################################################
 function saveCourses($subject, $course_num, $name){
   global $dbc;
+  $date = date("Y-m-d");
   console_log("Find the matching pair for " . $course_num . " in " . $subject);
   $query = "SELECT distinct transfer_id
             FROM transfer
@@ -94,7 +95,7 @@ function saveCourses($subject, $course_num, $name){
     console_log("Subject: " . $transfer_id);
 
     $query2 = "INSERT INTO transcript (user_id,transfer_id,creatation_date, name)
-              VALUES ('$_SESSION['user_id']','$transfer_id','date()','$name');";
+              VALUES ('$_SESSION['user_id']','$transfer_id','$date','$name');";
 
     console_log($query2);
     $results2 = pg_query($dbc, $query2);
