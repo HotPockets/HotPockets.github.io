@@ -69,9 +69,11 @@
 
 <div class="col-sm-3">
   <br><br><br><br><br>
-    <button class="btn btn-lg btn-danger" onclick="updateCourses(document.getElementById('coursesSelectBox'), document.getElementById('coursesOutputBox'));">Add Course(s)</button>
+    <button class="btn btn-lg btn-danger" onclick="updateCourses($('#subjectSelect option:selected').text(), document.getElementById('coursesSelectBox'), document.getElementById('coursesOutputBox'));">Add Course(s)</button>
     <br><br><br>
     <button class="btn btn-lg btn-danger" onclick="removeSelectedOptions(document.getElementById('coursesOutputBox'));">Remove Course(s)</button>
+    <br><br><br>
+    <button class="btn btn-lg btn-danger" id="saveButton">Save</button>
 </div>
 
 <div class="col-sm-3">
@@ -117,6 +119,7 @@
 <script>populateList(document.getElementById('coursesOutputBox'), outputList);
 
 $("document").ready(function() {
+
   //Populate courses
   //When the dropdown changes
   $("#subjectSelect").change(function(){
@@ -138,6 +141,37 @@ $("document").ready(function() {
            console.log(thrownError);
        }
      });
+  });
+
+  //Save courses
+  $("saveButton").click(function(){
+    //TODO Check to see if entered name already exists
+    
+    //Loop through and save each course
+    for (var i = 0; i < list.length, i++){
+      var sub = list[i].subject;
+      var num = list[i].courseNum;
+      var transName = "Test 1";
+
+      //Post the course
+      $.ajax({
+           url: 'source/php/saveSelectedCourses.php',
+           type: 'POST',
+           data: {subject : sub,
+                  courseNum : num,
+                  name: transName},
+           success: function(data) {
+               console.log("Saved " + sub + " " + num + ".");
+           },
+           error: function (xhr, ajaxOptions, thrownError) {
+             console.log(xhr.status);
+             console.log(xhr.responseText);
+             console.log(thrownError);
+         }
+       });
+
+    }
+
   });
 
 });
