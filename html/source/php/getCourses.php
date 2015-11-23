@@ -1,5 +1,5 @@
 <?php
-include 'functions.php';
+include '../../../php/functions.php';
 console_log("Starting to get courses.");
 if (isset($_POST['option'])) {
   $subject = $_POST["option"];
