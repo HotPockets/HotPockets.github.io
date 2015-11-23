@@ -80,7 +80,7 @@ function getCourses($subject){
 function getTranCourse($subject, $course_num){
   global $dbc;
   console_log("Find the matching pair for " . $course_num . " in " . $subject);
-  $query = "SELECT distinct t.m_course_num, t.m_subject, m.course_title
+  $query = "SELECT distinct t.m_subject, t.m_course_num, m.course_title
             FROM transfer t, marist m
             where t.d_subject = '$subject'
                   and t.d_course_num = '$course_num'
