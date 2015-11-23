@@ -77,31 +77,98 @@ function getCourses($subject){
   return $list;
 }
 ########################################################################################################################
-function getTranCourse($subject, $course_num){
+function saveCourses($subject, $course_num, $name){
   global $dbc;
   console_log("Find the matching pair for " . $course_num . " in " . $subject);
-  $query = "SELECT distinct t.m_subject, t.m_course_num, m.course_title
-            FROM transfer t, marist m
-            where t.d_subject = '$subject'
-                  and t.d_course_num = '$course_num'
-                  and t.m_course_num = m.course_num
-                  and t.m_subject = m.subject;";
+  $query = "SELECT distinct transfer_id
+            FROM transfer
+            where d_subject = '$subject'
+              and d_course_num = '$course_num';";
 
   console_log($query);
   $results = pg_query($dbc, $query);
   check_results($results);
 
-  $list = "";
   while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
-    $m_subject = (isset($row['m_subject']) ? $row['m_subejct'] : null);
-    console_log("Subject: " . $m_subject);
-    $m_course_num = (isset($row['m_course_num']) ? $row['m_course_num'] : null);
-    console_log("Course Num: " . $m_course_num);
-    $course_title = (isset($row['course_title']) ? $row['course_title'] : null);
-    console_log("Course Title: " . $course_title);
-    $list = $list . '<option value="' . $m_course_num . '">' . $m_subject . ' - ' . $m_course_num . ' - ' . $course_title . '</option>';
+    $transfer_id = (isset($row['transfer_id']) ? $row['m_subejct'] : null);
+    console_log("Subject: " . $transfer_id);
+
+    $query2 = "INSERT INTO transcript (user_id,transfer_id,creatation_date, name)
+              VALUES ('$_SESSION['user_id']','$transfer_id','date()','$name');";
+
+    console_log($query2);
+    $results2 = pg_query($dbc, $query2);
+    check_results($results2);
   }
-  return $list;
+}
+########################################################################################################################
+function getMajor($currMajor){
+  global $dbc;
+  console_log("Getting Majors");
+  $query = "SELECT distinct major_name FROM major";
+
+  console_log($query);
+  $results = pg_query($dbc, $query);
+  check_results($results);
+
+  while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
+    $major_name = (isset($row['major_name']) ? $row['major_name'] : null);
+    echo '<option value="' . $major_name . '" ';
+    if($major_name==$currMajor) echo 'selected="selected"';
+    echo '>' . $major_name . '</option>';
+  }
+}
+########################################################################################################################
+function getMinor($currMinor){
+  global $dbc;
+  console_log("Getting Minors");
+  $query = "SELECT distinct minor_name FROM minor";
+
+  console_log($query);
+  $results = pg_query($dbc, $query);
+  check_results($results);
+
+  while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
+    $minor_name = (isset($row['minor_name']) ? $row['minor_name'] : null);
+    echo '<option value="' . $minor_name . '" ';
+    if($minor_name==$currMinor) echo 'selected="selected"';
+    echo '>' . $minor_name . '</option>';
+  }
+}########################################################################################################################
+function checkMajor($name, $major_name){
+  global $dbc;
+  console_log("Finding what is in the major if anything is in the major");
+  $query = "SELECT distinct m.course_title, m.course_num, m.subject, m.credits
+            FROM marist m, majors ma, transcript tc, transfer t
+            WHERE tc.name = '$name'
+              and tc.user_id = $_SESSION['user_id']
+              and ma.major_name = '$major_name'
+              and tc.transfer_id = t.transfer_id
+              and t.m_course_num = m.course_num
+              and t.m_subject = m.subject
+              and m.course_num = ma.course_num
+              and m.subject = ma.subject;";
+  console_log($query);
+  $results = pg_query($dbc,$query);
+  check_results($results);
+}
+########################################################################################################################
+function checkMinor($name, $minor_name){
+  global $dbc;
+  console_log("Finding what is in the minor if anything is in the major");
+  $query = "SELECT distinct m.course_title, m.course_num, m.subject, m.credits
+            FROM marist m, minors mi, transcript tc, transfer t
+            WHERE tc.name = '$name'
+              and tc.user_id = $_SESSION['user_id']
+              and mi.minor_name = '$minor_name'
+              and tc.transfer_id = t.transfer_id
+              and t.m_course_num = m.course_num
+              and t.m_subject = m.subject
+              and m.course_num = mi.course_num
+              and m.subject = mi.subject;";
+  console_log($query);
+  $results = pg_query($dbc,$query);
+  check_results($results);
 }
 ########################################################################################################################
 function logOut(){
