@@ -80,9 +80,28 @@ function getCourses($subject){
 function getTranCourse($subject, $course_num){
   global $dbc;
   console_log("Find the matching pair for " . $course_num . " in " . $subject);
-  $query = "SELECT distinct t.m_course_num, t.m_subject, m. FROM transfer t, marist m where d_subject = '$subject' and d_course_num = '$course_num';";
+  $query = "SELECT distinct t.m_course_num, t.m_subject, m.course_title
+            FROM transfer t, marist m
+            where t.d_subject = '$subject'
+                  and t.d_course_num = '$course_num'
+                  and t.m_course_num = m.course_num
+                  and t.m_subject = m.subject;";
 
+  console_log($query);
+  $results = pg_query($dbc, $query);
+  check_results($results);
 
+  $list = "";
+  while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
+    $m_subject = (isset($row['m_subject']) ? $row['m_subejct'] : null);
+    console_log("Subject: " . $m_subject);
+    $m_course_num = (isset($row['m_course_num']) ? $row['m_course_num'] : null);
+    console_log("Course Num: " . $m_course_num);
+    $course_title = (isset($row['course_title']) ? $row['course_title'] : null);
+    console_log("Course Title: " . $course_title);
+    $list = $list . '<option value="' . $m_course_num . '">' . $m_subject . ' - ' . $m_course_num . ' - ' . $course_title . '</option>';
+  }
+  return $list;
 }
 ########################################################################################################################
 function logOut(){
