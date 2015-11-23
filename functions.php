@@ -66,13 +66,15 @@ function getCourses($subject){
   $results = pg_query($dbc, $query);
   check_results($results);
 
+  $list = "";
   while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
     $course_num = (isset($row['course_num']) ? $row['course_num'] : null);
     console_log("Course Num: " . $course_num);
     $course_title = (isset($row['course_title']) ? $row['course_title'] : null);
     console_log("Course Title: " . $course_title);
-    echo '<option value="' . $course_num . '">' . $course_num . ' - ' . $course_title . '</option>';
+    $list = $list . '<option value="' . $course_num . '">' . $course_num . ' - ' . $course_title . '</option>';
   }
+  return $list;
 }
 ########################################################################################################################
 function logOut(){
