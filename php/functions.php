@@ -77,6 +77,14 @@ function getCourses($subject){
   return $list;
 }
 ########################################################################################################################
+function getTranCourse($subject, $course_num){
+  global $dbc;
+  console_log("Find the matching pair for " . $course_num . " in " . $subject);
+  $query = "SELECT distinct t.m_course_num, t.m_subject, m. FROM transfer t, marist m where d_subject = '$subject' and d_course_num = '$course_num';";
+
+
+}
+########################################################################################################################
 function logOut(){
 // remove all session variables
 session_unset();
