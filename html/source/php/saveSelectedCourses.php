@@ -8,15 +8,15 @@ if (isset($_POST['subject'])) {
     if (isset($_POST['name'])){
       $name = $_REQUEST['name'];
       saveCourse($subject, $courseNum, $name);
-
+      echo "1";
     } else {
-      console_log("name did not get posted");
+      echo "0";
     }
   } else {
-    console_log("num did not get posted");
+    echo "0";
   }
 } else {
-  console_log("subject did not get posted");
+  echo "0";
 }
 
 

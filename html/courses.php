@@ -144,9 +144,9 @@ $("document").ready(function() {
   });
 
   //Save courses
-  $("saveButton").click(function(){
+  $("#saveButton").click(function(){
     //TODO Check to see if entered name already exists
-    
+
     //Loop through and save each course
     for (var i = 0; i < list.length, i++){
       var sub = list[i].subject;
