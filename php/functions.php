@@ -79,7 +79,9 @@ function getCourses($subject){
 ########################################################################################################################
 function saveCourses($subject, $course_num, $name){
   global $dbc;
+  session_start();
   $date = date("Y-m-d");
+  $user_id = $_SESSION['user_id'];
   console_log("Find the matching pair for " . $course_num . " in " . $subject);
   $query = "SELECT distinct transfer_id
             FROM transfer
@@ -95,7 +97,7 @@ function saveCourses($subject, $course_num, $name){
     console_log("Subject: " . $transfer_id);
 
     $query2 = "INSERT INTO transcript (user_id,transfer_id,creatation_date, name)
-              VALUES ('$_SESSION['user_id']','$transfer_id','$date','$name');";
+              VALUES ('$user_id','$transfer_id','$date','$name');";
 
     console_log($query2);
     $results2 = pg_query($dbc, $query2);
@@ -138,11 +140,13 @@ function getMinor($currMinor){
 }########################################################################################################################
 function checkMajor($name, $major_name){
   global $dbc;
+  session_start();
+  $user_id = $_SESSION['user_id'];
   console_log("Finding what is in the major if anything is in the major");
   $query = "SELECT distinct m.course_title, m.course_num, m.subject, m.credits
             FROM marist m, majors ma, transcript tc, transfer t
             WHERE tc.name = '$name'
-              and tc.user_id = $_SESSION['user_id']
+              and tc.user_id = $user_id
               and ma.major_name = '$major_name'
               and tc.transfer_id = t.transfer_id
               and t.m_course_num = m.course_num
@@ -156,11 +160,13 @@ function checkMajor($name, $major_name){
 ########################################################################################################################
 function checkMinor($name, $minor_name){
   global $dbc;
+  session_start();
+  $user_id = $_SESSION['user_id'];
   console_log("Finding what is in the minor if anything is in the major");
   $query = "SELECT distinct m.course_title, m.course_num, m.subject, m.credits
             FROM marist m, minors mi, transcript tc, transfer t
             WHERE tc.name = '$name'
-              and tc.user_id = $_SESSION['user_id']
+              and tc.user_id = $user_id
               and mi.minor_name = '$minor_name'
               and tc.transfer_id = t.transfer_id
               and t.m_course_num = m.course_num

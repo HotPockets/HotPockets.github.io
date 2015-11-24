@@ -3,7 +3,7 @@
 <?xml-stylesheet type="text/css" href="index.xml"?>
 <!-- Bootstrap -->
 <!-- Link to Jquery -->
-<script src="./distrib/scripts/jquery-1.11.3.min.js"></script>
+<script src="./distrib/js/jquery-1.11.3.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="./distrib/css/bootstrap.min.css">
 <!-- Optional theme -->

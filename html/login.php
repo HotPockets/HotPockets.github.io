@@ -51,8 +51,8 @@
                   <input class="btn btn-danger" type="submit" value="Login" name="login">
                 </form>
                 <?php
-                  require( '././php/connect.php' );
-                  require( '././php/functions.php' );
+                  require( '../php/connect.php' );
+                  require( '../php/functions.php' );
                   session_start();
                   if (isset($_POST['login'])) {
                   	$name = $_POST['loginEmail'];
