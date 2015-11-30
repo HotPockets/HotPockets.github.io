@@ -124,24 +124,24 @@ function saveCourses($subject, $course_num, $name){
   global $dbc;
   session_start();
   $user_id = (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null);
-  #console_log("Find the matching pair for " . $course_num . " in " . $subject);
+  console_log("Find the matching pair for " . $course_num . " in " . $subject);
   $query = "SELECT distinct transfer_id
             FROM transfer
             where d_subject = '" . $subject . "'
               and d_course_num = '" . $course_num . "';";
 
-  #console_log($query);
+  console_log($query);
   $results = pg_query($dbc, $query);
   check_results($results);
 
   while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
     $transfer_id = (isset($row['transfer_id']) ? $row['transfer_id'] : null);
-    #console_log("Subject: " . $transfer_id);
+    console_log("Subject: " . $transfer_id);
 
     $query2 = "INSERT INTO transcript (user_id,transfer_id,creatation_date, name)
               VALUES ('" . $user_id . "','" . $transfer_id . "','current_date','" . $name . "');";
 
-    #console_log($query2);
+    console_log($query2);
     $results2 = pg_query($dbc, $query2);
     check_results($results2);
   }
@@ -237,9 +237,9 @@ function check_results($results) {
   global $dbc;
 
   if($results != true) {
-    #console_log("No Results from Query." . pg_last_error($dbc));
+    console_log("No Results from Query." . pg_last_error($dbc));
   } else {
-    #console_log("Query Returned Results");
+    console_log("Query Returned Results");
   }
 }
 ########################################################################################################################

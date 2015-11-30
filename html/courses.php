@@ -54,6 +54,7 @@
       require( '../php/functions.php' );
       session_start();
       getSubjects();
+      saveCourses("ART", "102", "Hardcode Test");
       ?>
     </select>
     <noscript><input type="submit" name="selectedSubject" id="selectedSubject" value="Submit"></noscript>
