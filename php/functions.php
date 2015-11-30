@@ -123,13 +123,12 @@ function getCourses($subject){
 function saveCourses($subject, $course_num, $name){
   global $dbc;
   session_start();
-  $date = date("Y-m-d");
   $user_id = (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null);
   #console_log("Find the matching pair for " . $course_num . " in " . $subject);
   $query = "SELECT distinct transfer_id
             FROM transfer
-            where d_subject = '$subject'
-              and d_course_num = '$course_num';";
+            where d_subject = '" . $subject . "'
+              and d_course_num = '" . $course_num . "';";
 
   #console_log($query);
   $results = pg_query($dbc, $query);
@@ -140,7 +139,7 @@ function saveCourses($subject, $course_num, $name){
     #console_log("Subject: " . $transfer_id);
 
     $query2 = "INSERT INTO transcript (user_id,transfer_id,creatation_date, name)
-              VALUES ('$user_id','$transfer_id','$date','$name');";
+              VALUES ('" . $user_id . "','" . $transfer_id . "','current_date','" . $name . "');";
 
     #console_log($query2);
     $results2 = pg_query($dbc, $query2);
