@@ -68,9 +68,9 @@
 
 <div class="col-sm-3">
   <br><br><br><br><br>
-    <button class="btn btn-lg btn-danger" style="width: 75%" onclick="updateCourses($('#subjectSelect option:selected').text(), document.getElementById('coursesSelectBox'), document.getElementById('coursesOutputBox'));">Add Course(s)</button>
+    <button class="btn btn-lg btn-danger" style="width: 80%" onclick="updateCourses($('#subjectSelect option:selected').text(), document.getElementById('coursesSelectBox'), document.getElementById('coursesOutputBox'));">Add Course(s)</button>
     <br><br><br>
-    <button class="btn btn-lg btn-danger" style="width: 75%;" onclick="removeSelectedOptions(document.getElementById('coursesOutputBox'));">Remove Course(s)</button>
+    <button class="btn btn-lg btn-danger" style="width: 80%;" onclick="removeSelectedOptions(document.getElementById('coursesOutputBox'));">Remove Course(s)</button>
 </div>
 
 <div class="col-sm-3">
