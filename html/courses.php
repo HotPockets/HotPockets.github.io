@@ -59,7 +59,7 @@
 </form>
 <form class="form-horizontal">
     <br><br>
-    <h3 align='center' for='formCourses[]'>Select the Courses</label><h3>
+    <h3 align='center' for='formCourses[]'>Select the Courses</label></h3>
 <select style="width: 100%;" multiple id="coursesSelectBox" name="formCourses[]">
 
   </select>
@@ -71,8 +71,6 @@
     <button class="btn btn-lg btn-danger" style="width: 75%" onclick="updateCourses($('#subjectSelect option:selected').text(), document.getElementById('coursesSelectBox'), document.getElementById('coursesOutputBox'));">Add Course(s)</button>
     <br><br><br>
     <button class="btn btn-lg btn-danger" style="width: 75%;" onclick="removeSelectedOptions(document.getElementById('coursesOutputBox'));">Remove Course(s)</button>
-    <br><br><br>
-    <button class="btn btn-lg btn-danger" id="saveButton">Save</button>
 </div>
 
 <div class="col-sm-3">
@@ -84,35 +82,8 @@
   <select style="width: 100%;" multiple="multiple" id="coursesOutputBox" name="outCourses[]">
 
   </select>
-  <!--
-  <table class="table table-striped table-bordered">
-  <tr>
-    <th>Course Number</th>
-    <th>Subject</th>
-    <th>Course Name</th>
-  </tr>
-  <tr>
-    <td>3333</td>
-    <td>Sex Studies</td>
-    <td>Boneritis</td>
-  </tr>
-  <tr>
-    <td>6969</td>
-    <td>Sex Studies</td>
-    <td>Sexxy time</td>
-  </tr>
-  <tr>
-    <td>3333</td>
-    <td>Sex Studies</td>
-    <td>Boneritis</td>
-  </tr>
-  <tr>
-    <td>6969</td>
-    <td>Sex Studies</td>
-    <td>Sexxy time</td>
-  </tr>
-  </table>
-  -->
+  <br><br><br>
+  <button class="btn btn-lg btn-danger" style="float:right;" id="saveButton">Save</button>
 
 </form>
 <script>populateList(document.getElementById('coursesOutputBox'), outputList);
