@@ -73,7 +73,7 @@ if(empty($lname)){
   $row = pg_fetch_array($results, NULL, PGSQL_ASSOC) ;
   echo "ROW: " . $row;
 
-  $pid = validate($email, $password);
+  $pid = 1;
 
   if($pid == null){
     echo "The pid is null";
@@ -239,8 +239,10 @@ function check_results($results) {
 
   if($results != true) {
     console_log("No Results from Query." . pg_last_error($dbc));
+    return false;
   } else {
     console_log("Query Returned Results");
+    return true;
   }
 }
 ########################################################################################################################

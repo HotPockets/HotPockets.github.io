@@ -97,7 +97,11 @@
                     $email = $_POST['signUpEmail'];
 
                     if($password == $password2){
-                      $pid = sign_up($email,$password,$fname,$lname);
+                      $result = sign_up($email,$password,$fname,$lname);
+                      $pid = -1;
+                      if($result == 1){
+                        $pid = validate($email, $password);
+                      }
                       if($pid == -1){
                         echo '<p style=color:red>Login failed please try again.</p>';
                        } else {

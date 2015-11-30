@@ -82,10 +82,9 @@
   <select style="width: 100%;" multiple="multiple" id="coursesOutputBox" name="outCourses[]">
 
   </select>
-  <br><br><br>
-  <button class="btn btn-lg btn-danger" style="float:right;" id="saveButton">Save</button>
-
 </form>
+<br><br><br>
+<button class="btn btn-lg btn-danger" style="float:right;" id="saveButton">Save</button>
 <script>populateList(document.getElementById('coursesOutputBox'), outputList);
 
 $("document").ready(function() {

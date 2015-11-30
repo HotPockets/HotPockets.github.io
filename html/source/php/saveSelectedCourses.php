@@ -6,7 +6,7 @@ if (isset($_POST['subject'])) {
     $courseNum = $_REQUEST['courseNum'];
     if (isset($_POST['name'])){
       $name = $_REQUEST['name'];
-      #saveCourse($subject, $courseNum, $name);
+      saveCourse($subject, $courseNum, $name);
       echo "1";
     } else {
       echo "0";
