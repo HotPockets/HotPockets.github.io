@@ -40,12 +40,12 @@ function validate($prname = '', $prpass = '')
     return intval($pid) ;
 }
 ###############################################################################################
-function sign_up($email = '', $pass = '', $fname = '', $lname = ''){
+function sign_up($email = '', $password = '', $fname = '', $lname = ''){
   global $dbc;
 if(empty($email)){
   return -1 ;
 }
-if(empty($pass)){
+if(empty($password)){
   return -1 ;
 }
 if(empty($fname)){
@@ -57,9 +57,9 @@ if(empty($lname)){
 
 
   # Make the query
-  $query = "SELECT sign_up('$fname', '$lname', '$email', '$email')" ;
+  $query = "SELECT sign_up('$fname', '$lname', '$email', '$password')" ;
 
-  # Execute the query
+  # Execute the query 
   $results = pg_query( $dbc, $query ) ;
   check_results($results);
 
@@ -124,6 +124,7 @@ function saveCourses($subject, $course_num, $name){
   global $dbc;
   session_start();
   $user_id = (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null);
+  $date = date("Y-m-d");
   console_log("Find the matching pair for " . $course_num . " in " . $subject);
   $query = "SELECT distinct transfer_id
             FROM transfer
@@ -139,7 +140,7 @@ function saveCourses($subject, $course_num, $name){
     console_log("Subject: " . $transfer_id);
 
     $query2 = "INSERT INTO transcript (user_id,transfer_id,creatation_date, name)
-              VALUES ('" . $user_id . "','" . $transfer_id . "','current_date','" . $name . "');";
+              VALUES ('$user_id','$transfer_id','$date','$name');";
 
     console_log($query2);
     $results2 = pg_query($dbc, $query2);

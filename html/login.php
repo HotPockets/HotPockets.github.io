@@ -83,9 +83,35 @@
                   <br>
                   <input type="password" class="form-control" id="InputPassword2" name="signUpConfirmPassword"  placeholder="Retype Password">
                   <br>
-                  <a href="profile.html" class="btn btn-danger" type="submit">Sign Up</a>
+                  <input class="btn btn-danger" type="submit" value="Sign Up" name="SignUp">
                 </form>
               </div>
+              <?php
+                require( '../php/connect.php' );
+                require( '../php/functions.php' );
+                session_start();
+                if (isset($_POST['SignUp'])) {
+                  $fname = $_POST['signUpFirst'];
+                  $lname = $_POST['signUpLast'];
+                  $password = $_POST['signUpPassword'];
+                  $password2 = $_POST['signUpConfirmPassword'];
+                  $email = $_POST['signUpEmail'];
+
+                  if($password == $password2){
+                    $pid = sign_up($email,$password,$fname,$lname);
+                    if($pid == -1){
+                      echo '<p style=color:red>Login failed please try again.</p>';
+                     } else {
+                       console_log("Logging in with PID " . $pid);
+                      load('profile.php', $pid);
+                    }
+                  }
+                  } else {
+                    echo '<p style=color:red>Please enter matching passwords.</p>';
+                  }
+
+
+              ?>
             </div>
 
         </div>
