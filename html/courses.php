@@ -44,11 +44,10 @@
 <div class="landing">
   <br><br>
 <div class="col-sm-3">
-  <br><br><br>
   <form class="form-horizontal" method="post" id="subjectSelectForm">
-    <label for='formSubject'>Select the subject</label><br>
-    <select name="formSubject" id="subjectSelect">
-    <option value="none">--------</option>
+    <h3>Select the subject</h3>
+    <select name="formSubject" style="width: 100%;" id="subjectSelect">
+    <option value="none">Select a Subject</option>
       <?php
       require( '../php/connect.php' );
       require( '../php/functions.php' );
@@ -61,8 +60,8 @@
 </form>
 <form class="form-horizontal">
     <br><br>
-    <label for='formCourses[]'>Select the Courses</label><br>
-<select multiple id="coursesSelectBox" name="formCourses[]">
+    <h3 align='center' for='formCourses[]'>Select the Courses</label><h3>
+<select style="width: 100%;" multiple id="coursesSelectBox" name="formCourses[]">
 
   </select>
 </form>
@@ -70,9 +69,9 @@
 
 <div class="col-sm-3">
   <br><br><br><br><br>
-    <button class="btn btn-lg btn-danger" onclick="updateCourses($('#subjectSelect option:selected').text(), document.getElementById('coursesSelectBox'), document.getElementById('coursesOutputBox'));">Add Course(s)</button>
+    <button class="btn btn-lg btn-danger" style="width: 75%" onclick="updateCourses($('#subjectSelect option:selected').text(), document.getElementById('coursesSelectBox'), document.getElementById('coursesOutputBox'));">Add Course(s)</button>
     <br><br><br>
-    <button class="btn btn-lg btn-danger" onclick="removeSelectedOptions(document.getElementById('coursesOutputBox'));">Remove Course(s)</button>
+    <button class="btn btn-lg btn-danger" style="width: 75%;" onclick="removeSelectedOptions(document.getElementById('coursesOutputBox'));">Remove Course(s)</button>
     <br><br><br>
     <button class="btn btn-lg btn-danger" id="saveButton">Save</button>
 </div>
@@ -82,8 +81,8 @@
 
 <div class="col-sm-5">
 <H1>Transfer Courses</H1>
-<form class="form-horizontal">
-  <select multiple="multiple" id="coursesOutputBox" name="outCourses[]">
+<form class="form-horizontal input-lg">
+  <select style="width: 100%;" multiple="multiple" id="coursesOutputBox" name="outCourses[]">
 
   </select>
   <!--
