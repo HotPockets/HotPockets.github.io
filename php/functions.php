@@ -59,7 +59,7 @@ if(empty($lname)){
   # Make the query
   $query = "SELECT sign_up('$fname', '$lname', '$email', '$password')" ;
 
-  # Execute the query 
+  # Execute the query
   $results = pg_query( $dbc, $query ) ;
   check_results($results);
 
@@ -73,7 +73,7 @@ if(empty($lname)){
   $row = pg_fetch_array($results, NULL, PGSQL_ASSOC) ;
   echo "ROW: " . $row;
 
-  $pid = (isset($row['login']) ? $row['login'] : null);
+  $pid = validate($email, $password);
 
   if($pid == null){
     echo "The pid is null";
