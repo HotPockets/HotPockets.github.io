@@ -1,6 +1,5 @@
 <?php
 include '../../../php/functions.php';
-console_log("Starting to save courses.");
 if (isset($_POST['subject'])) {
   $subject = $_REQUEST['subject'];
   if (isset($_POST['courseNum'])){

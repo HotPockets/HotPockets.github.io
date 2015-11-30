@@ -148,7 +148,7 @@ $("document").ready(function() {
     //TODO Check to see if entered name already exists
 
     //Loop through and save each course
-    for (var i = 0; i < list.length, i++){
+    for (var i = 0; i < list.length; i++){
       var sub = list[i].subject;
       var num = list[i].courseNum;
       var transName = "Test 1";
@@ -161,6 +161,7 @@ $("document").ready(function() {
                   courseNum : num,
                   name: transName},
            success: function(data) {
+               console.log(data);
                console.log("Saved " + sub + " " + num + ".");
            },
            error: function (xhr, ajaxOptions, thrownError) {
