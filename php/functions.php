@@ -40,8 +40,47 @@ function validate($prname = '', $prpass = '')
     return intval($pid) ;
 }
 ###############################################################################################
-function sign_up(){
+function sign_up($email = '', $pass = '', $fname = '', $lname = ''){
+  global $dbc;
+if(empty($email)){
+  return -1 ;
+}
+if(empty($pass)){
+  return -1 ;
+}
+if(empty($fname)){
+  return -1 ;
+}
+if(empty($lname)){
+  return -1 ;
+}
 
+
+  # Make the query
+  $query = "SELECT sign_up('$fname', '$lname', '$email', '$email')" ;
+
+  # Execute the query
+  $results = pg_query( $dbc, $query ) ;
+  check_results($results);
+
+  # If we get no rows, the login failed
+  if (pg_num_rows( $results ) == 0 ){
+    return -1 ;
+  }
+
+
+  # We have at least one row, so get the first one and return it
+  $row = pg_fetch_array($results, NULL, PGSQL_ASSOC) ;
+  echo "ROW: " . $row;
+
+  $pid = (isset($row['login']) ? $row['login'] : null);
+
+  if($pid == null){
+    echo "The pid is null";
+  }
+
+  echo "Found PID: " . $pid;
+  return intval($pid) ;
 }
 ########################################################################################################################
 function getSubjects($currSubject){
