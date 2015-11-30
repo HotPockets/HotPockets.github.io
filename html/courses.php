@@ -53,7 +53,6 @@
       require( '../php/functions.php' );
       session_start();
       getSubjects();
-      saveCourses("ART", "102", "Hardcode Test");
       ?>
     </select>
     <noscript><input type="submit" name="selectedSubject" id="selectedSubject" value="Submit"></noscript>
@@ -152,7 +151,7 @@ $("document").ready(function() {
       var sub = list[i].subject;
       var num = list[i].courseNum;
       var transName = "Test 1";
-
+      console.log("About to save " + sub + " " + num + ".");
       //Post the course
       $.ajax({
            url: 'source/php/saveSelectedCourses.php',
