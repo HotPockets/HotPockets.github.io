@@ -83,7 +83,7 @@ if(empty($lname)){
   return intval($pid) ;
 }
 ########################################################################################################################
-function getSubjects($currSubject){
+function getSubjects(){
   global $dbc;
   #console_log("Getting Subjects");
   $query = "SELECT * FROM subject_dcc";
@@ -95,7 +95,6 @@ function getSubjects($currSubject){
   while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
     $subject = (isset($row['subject']) ? $row['subject'] : null);
     echo '<option value="' . $subject . '" ';
-    if($subject==$currSubject) echo 'selected="selected"';
     echo '>' . $subject . '</option>';
   }
 }
@@ -130,7 +129,7 @@ function saveCourses($subject, $course_num, $name){
             FROM transfer
             where d_subject = '" . $subject . "'
               and d_course_num = '" . $course_num . "';";
-
+  log_file($query);
   console_log($query);
   $results = pg_query($dbc, $query);
   check_results($results);
@@ -270,4 +269,12 @@ function console_log($data) {
   echo '</script>';
 }
 ########################################################################################################################
+#function log_file($data){
+#  $myFile = "phpSucks.txt";
+#  $fh = fopen($myFile, 'w') or die("can't open file");
+#  fwrite($fh, $data . "\n");
+#  fclose($fh);
+#}
+
+
 ?>
