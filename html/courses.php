@@ -84,7 +84,7 @@
   </select>
 </form>
 <br><br><br>
-<button class="btn btn-lg btn-danger" style="float:right;" id="saveButton">Save</button>
+<button class="btn btn-lg btn-danger" style="float:right;" id="saveButton">Submit Evaluation</button>
 <script>populateList(document.getElementById('coursesOutputBox'), outputList);
 
 $("document").ready(function() {

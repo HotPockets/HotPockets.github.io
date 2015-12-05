@@ -35,8 +35,8 @@
           </div>
         </nav>
         <div class="landing">
-          <br><br><br>
-          <h1>Course History</h1>
+          <br>
+          <h1>Welcome Member!</h1>
           <br><br>
           <div class="row">
             <div class="col-md-6 col-md-offset-3">
