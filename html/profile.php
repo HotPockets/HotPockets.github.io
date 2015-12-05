@@ -64,6 +64,7 @@
         </div>
 
               <div class="footer">
+                <br><br><br>
                 <p>Copyright&#169 Team Hot Pockets 2015</p>
               </div>
         </div>

@@ -42,10 +42,12 @@
           </div>
         </nav>
 <div class="landing">
+  <br>
+  <h1>Generate Transfer Evaluations!</h1>
   <br><br>
 <div class="col-sm-3">
   <form class="form-horizontal" method="post" id="subjectSelectForm">
-    <h3>Select the subject</h3>
+    <h3><b>Select the subject</b></h3>
     <select name="formSubject" style="width: 100%;" id="subjectSelect">
     <option value="none">Select a Subject</option>
       <?php
@@ -59,7 +61,7 @@
 </form>
 <form class="form-horizontal">
     <br><br>
-    <h3 align='center' for='formCourses[]'>Select the Courses</label></h3>
+    <b><h3  align='center' for='formCourses[]'>Select the Courses</label></b></h3>
 <select style="width: 100%;" multiple id="coursesSelectBox" name="formCourses[]">
 
   </select>
@@ -77,13 +79,13 @@
 </div>
 
 <div class="col-sm-5">
-<H1>Transfer Courses</H1>
+<h2><b>Transfer Courses</b></h2>
 <form class="form-horizontal input-lg">
   <select style="width: 100%;" multiple="multiple" id="coursesOutputBox" name="outCourses[]">
 
   </select>
 </form>
-<br><br><br>
+<br><br><br><br>
 <button class="btn btn-lg btn-danger" style="float:right;" id="saveButton">Submit Evaluation</button>
 <script>populateList(document.getElementById('coursesOutputBox'), outputList);
 
@@ -165,6 +167,7 @@ doc.save('Test.pdf');
 
 </div>
         <div class="footer">
+          <br><br><br>
           <p>Copyright&#169 Team Hot Pockets 2015</p>
         </div>
   </div>
