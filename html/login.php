@@ -36,7 +36,7 @@
           </div>
         </nav>
         <div class="landing">
-          <br><br><br>
+          <br><br><br><br><br>
           <div class="holder">
             <div class="row">
               <div class="col-sm-1">
@@ -121,6 +121,7 @@
         </div>
       </div>
               <div class="footer">
+                <br><br><br>
                 <p>Copyright&#169 Team Hot Pockets 2015</p>
               </div>
         </div>
