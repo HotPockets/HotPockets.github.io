@@ -71,7 +71,7 @@
               </div>
 
               <div class="col-sm-5">
-                <form class="form-horizontal">
+                <form class="form-horizontal" method="post">
                   <h2>Sign Up</h2>
                   <input type="first_name" class="form-control" id="Inputfname" name="signUpFirst" placeholder="First Name">
                   <br>
@@ -86,9 +86,6 @@
                   <input class="btn btn-danger" type="submit" value="Sign Up" name="signUp">
                 </form>
                 <?php
-                  require( '../php/connect.php' );
-                  require( '../php/functions.php' );
-                  session_start();
                   if (isset($_POST['signUp'])) {
                     $fname = $_POST['signUpFirst'];
                     $lname = $_POST['signUpLast'];
@@ -107,13 +104,11 @@
                        } else {
                          console_log("Logging in with PID " . $pid);
                         load('profile.php', $pid);
-                      }
-                    }
-                    } else {
+                       }
+                      } else {
                       echo '<p style=color:red>Please enter matching passwords.</p>';
                     }
-
-
+                  }
                 ?>
               </div>
             </div>
