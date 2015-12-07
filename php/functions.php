@@ -85,10 +85,10 @@ if(empty($lname)){
 ########################################################################################################################
 function getSubjects(){
   global $dbc;
-  #console_log("Getting Subjects");
+  console_log("Getting Subjects");
   $query = "SELECT * FROM subject_dcc";
-
-  #console_log($query);
+  #log_file($query);
+  console_log($query);
   $results = pg_query($dbc, $query);
   check_results($results);
 
@@ -119,29 +119,21 @@ function getCourses($subject){
   return $list;
 }
 ########################################################################################################################
-function saveCourses($subject, $course_num, $name){
+function saveCourses($user_id, $subject, $course_num, $name){
   global $dbc;
-  session_start();
-  $user_id = (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null);
   $date = date("Y-m-d");
-  console_log("Find the matching pair for " . $course_num . " in " . $subject);
   $query = "SELECT distinct transfer_id
             FROM transfer
             where d_subject = '" . $subject . "'
               and d_course_num = '" . $course_num . "';";
-  log_file($query);
-  console_log($query);
   $results = pg_query($dbc, $query);
   check_results($results);
 
   while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
     $transfer_id = (isset($row['transfer_id']) ? $row['transfer_id'] : null);
-    console_log("Subject: " . $transfer_id);
 
     $query2 = "INSERT INTO transcript (user_id,transfer_id,creatation_date, name)
               VALUES ('$user_id','$transfer_id','$date','$name');";
-
-    console_log($query2);
     $results2 = pg_query($dbc, $query2);
     check_results($results2);
   }
@@ -270,10 +262,14 @@ function console_log($data) {
 }
 ########################################################################################################################
 #function log_file($data){
-#  $myFile = "phpSucks.txt";
-#  $fh = fopen($myFile, 'w') or die("can't open file");
-#  fwrite($fh, $data . "\n");
-#  fclose($fh);
+#  $fileName = '/home/user/phpLog.txt';
+#  if (!file_exists($fileName)){
+#    echo "Cannot find file.";
+#  } else {
+#    $myFile = fopen($fileName, 'w') or die('failed to open file');
+#    fwrite($myFile, $data . '\n');
+#    fclose($myFile);
+#  }
 #}
 
 
