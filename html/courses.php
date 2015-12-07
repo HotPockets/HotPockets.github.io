@@ -45,7 +45,7 @@
   <br>
   <h1>Generate Transfer Evaluations!</h1>
   <br><br>
-<div class="col-sm-3">
+<div class="col-sm-4">
   <form class="form-horizontal" method="post" id="subjectSelectForm">
     <h3><b>Select the subject</b></h3>
     <select name="formSubject" style="width: 100%;" id="subjectSelect">
