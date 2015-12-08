@@ -217,13 +217,19 @@ function profileList(){
   session_start();
   $user_id = (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null);
 
-  $query = "SELECT DISTINCT t.name, t.creatation_date
+  $query = "SELECT DISTINCT t.name
             FROM transcript t, users u
             WHERE t.user_id = u.user_id
               and u.user_id = $user_id
-            ORDER BY t.creatation_date;";
+            ORDER BY t.name;";
   $results = pg_query($dbc, $query);
   check_results($results);
+
+  while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
+    $name = (isset($row['name']) ? $row['name'] : null);
+    echo '<option value="' . $name  . '" ';
+    echo '>' . $name . '</option>';
+  }
 }
 ########################################################################################################################
 function transcriptSelect($name){
@@ -242,6 +248,23 @@ function transcriptSelect($name){
             group by m.subject, m.course_num;";
   $results = pg_query($dbc,$query);
   check_results($results);
+}
+########################################################################################################################
+function getName(){
+  global $dbc;
+  session_start();
+  $user_id = (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null);
+
+  $query = "SELECT first_name FROM users WHERE user_id = $user_id;";
+
+  $results = pg_query($dbc,$query);
+  check_results($results);
+
+  while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
+    $fname = (isset($row['first_name']) ? $row['first_name'] : null);
+  }
+
+  $_SESSION['first_name'] = $fname;
 }
 ########################################################################################################################
 function logOut(){
@@ -270,7 +293,7 @@ function check_results($results) {
 }
 ########################################################################################################################
 # Loads a specified or default URL.
-function load( $page = 'login.php', $pid = -1 )
+function load( $page = 'login.php', $pid = -1)
 {
   # Begin URL with protocol, domain, and current directory.
   $url = 'http://' . $_SERVER[ 'HTTP_HOST' ] . dirname( $_SERVER[ 'PHP_SELF' ] ) ;
