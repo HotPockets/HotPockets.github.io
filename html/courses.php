@@ -118,33 +118,35 @@ $("document").ready(function() {
   //Save courses
   $("#saveButton").click(function(){
     //TODO Check to see if entered name already exists
+    var transName = $('#eval_name').val();
+    if (transName.length < 1){
+      alert("Please enter an Evaluation Name.");
+    } else {
+      //Loop through and save each course
+      for (var i = 0; i < list.length; i++){
+        var sub = list[i].subject;
+        var num = list[i].courseNum;
 
-    //Loop through and save each course
-    for (var i = 0; i < list.length; i++){
-      var sub = list[i].subject;
-      var num = list[i].courseNum;
-      var transName = "Test 1";
-      console.log("About to save " + sub + " " + num + ".");
-      //Post the course
-      $.ajax({
-           url: 'source/php/saveSelectedCourses.php',
-           type: 'POST',
-           data: {subject : sub,
-                  courseNum : num,
-                  name: transName},
-           success: function(data) {
-               console.log(data);
-               console.log("Saved " + sub + " " + num + ".");
-           },
-           error: function (xhr, ajaxOptions, thrownError) {
-             console.log(xhr.status);
-             console.log(xhr.responseText);
-             console.log(thrownError);
-         }
-       });
-
-    }
-
+          console.log("About to save " + sub + " " + num + ".");
+          //Post the course
+          $.ajax({
+               url: 'source/php/saveSelectedCourses.php',
+               type: 'POST',
+               data: {subject : sub,
+                      courseNum : num,
+                      name: transName},
+               success: function(data) {
+                   console.log(data);
+                   console.log("Saved " + sub + " " + num + ".");
+               },
+               error: function (xhr, ajaxOptions, thrownError) {
+                 console.log(xhr.status);
+                 console.log(xhr.responseText);
+                 console.log(thrownError);
+             }
+           });
+      }
+  }
   });
 
 });

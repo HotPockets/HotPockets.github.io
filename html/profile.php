@@ -36,18 +36,6 @@
         </nav>
         <div class="landing">
           <br>
-          <h1>Welcome Member!</h1>
-          <br><br>
-          <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-              <textarea class="form-control" id="course-history" name="course-history"rows="20"></textarea>
-            </div>
-          </div>
-          <br><br>
-          <form class="form-horizontal" method="post">
-            <a href="courses.php" class="btn btn-lg btn-danger">Input More Courses</a>
-            <input class="btn btn-lg btn-danger" type="submit" name="logout" value="Log Out">
-          </form>
           <?php
           require( '../php/connect.php' );
           require( '../php/functions.php' );
@@ -57,10 +45,43 @@
           } else {
             console_log("Logged in with PID " . $_SESSION['user_id']);
           }
-          if (isset($_POST['logout'])) {
-            logOut();
-          }
+          getName();
+          console_log('<h1>Welcome ' . $_SESSION['first_name'] .'!</h1>');
+          echo '<h1>Welcome ' . $_SESSION['first_name'] .'!</h1>';
           ?>
+          <br><br>
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+              <form class="form-horizontal input-lg">
+                <select style="width: 100%;" id="savesOutputBox" name="selectedSave">
+                  <option value='none'>Please select an evaluation</option>
+                  <?php
+                  profileList();
+                  ?>
+                </select>
+                <input class="btn btn-lg btn-danger" type="submit" name="evaluate" value="Evaluate Selection">
+            </form>
+            <?php
+              if (isset($_POST['evaluate'])) {
+                $name = isset($_POST['selectedSave']) ? $_POST['selectedSave'] : false;
+                if ($name){
+                  echo $name;
+                } else {
+                  echo 'Please select a saved evaluation from the box.';
+                }
+              }
+              if (isset($_POST['logout'])) {
+                logOut();
+              }
+            ?>
+            </div>
+          </div>
+          <br><br>
+          <form class="form-horizontal" method="post">
+            <a href="courses.php" class="btn btn-lg btn-danger">Input More Courses</a>
+            <input class="btn btn-lg btn-danger" type="submit" name="logout" value="Log Out">
+          </form>
+
         </div>
 
               <div class="footer">
