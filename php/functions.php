@@ -231,7 +231,15 @@ function transcriptSelect($name){
   session_start();
   $user_id = (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null);
 
-  $query = "SELECT ";
+  $query = "SELECT m.subject, m.course_num, m.course_title, m.credits, sum(m.credits) as total_credits
+            FROM marist m, transfer t, transcript tr, users u
+            WHERE u.user_id = $user_id
+              and tr.user_id = u.user_id
+              and tr.name = '$name'
+              and tr.transfer_id = t.transfer_id
+              and t.m_subject = m.subject
+              and t.m_course_num = m.course_num
+            group by m.subject, m.course_num;";
   $results = pg_query($dbc,$query);
   check_results($results);
 }
