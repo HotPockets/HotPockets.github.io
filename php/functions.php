@@ -212,6 +212,30 @@ function checkMinor($name, $minor_name){
   check_results($results);
 }
 ########################################################################################################################
+function profileList(){
+  global $dbc;
+  session_start();
+  $user_id = (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null);
+
+  $query = "SELECT DISTINCT t.name, t.creatation_date
+            FROM transcript t, users u
+            WHERE t.user_id = u.user_id
+              and u.user_id = $user_id
+            ORDER BY t.creatation_date;";
+  $results = pg_query($dbc, $query);
+  check_results($results);
+}
+########################################################################################################################
+function transcriptSelect($name){
+  global $dbc;
+  session_start();
+  $user_id = (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null);
+
+  $query = "SELECT ";
+  $results = pg_query($dbc,$query);
+  check_results($results);
+}
+########################################################################################################################
 function logOut(){
 // remove all session variables
 session_unset();
