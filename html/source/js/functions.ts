@@ -1,5 +1,7 @@
 var outputList:string = "";
 var list: TransferCourse[] = [];
+var _totalCredits: number;
+var _yVal: number;
 
 /*
 if (localStorage.getItem("outputList") !== null){
@@ -84,10 +86,100 @@ function updateCourses(sub, sel, coursesOutputBox){
 function populateList(element, text: string){
   element.innerHTML = text;
 }
+//---------------------------------------------------------
+function createPDF(doc){
+  _yVal = 56;
+  var major = testMajor();
 
+  writeHeading(doc);
+
+  for (var i = 0; i < 3; i++){
+    writeMajor(doc, major);
+  }
+
+  doc.save('Test.pdf');
+}
+
+function writeHeading(doc){
+  doc.setTextColor(100);
+  doc.setFont("helvetica");
+  doc.setFontType("bold");
+  doc.setFontSize(36);
+  doc.setTextColor(255, 0, 0);
+  doc.text(65, 30, 'Marist College');
+  doc.setFontSize(28);
+  doc.setTextColor(0, 0, 0);
+  doc.text(38, 40, 'Unofficial Transfer Evaluation');
+}
+
+function writeMajor(doc, major: Major){
+  var xLeftCol = 25;
+  var xCreditCol = 170;
+  var rectWidth = 163;
+  var yTopRightCorner;
+  var yTableTop;
+
+  _totalCredits = 0;
+
+  //Major Heading
+  doc.setFontSize(22);
+  doc.text(xLeftCol, _yVal, major.name);
+  _yVal += 10;
+
+  //Table Header
+  doc.setFontSize(20);
+  doc.text(xLeftCol, _yVal, "Course");
+  doc.text(xCreditCol -10, _yVal, "Credits");
+  yTableTop = _yVal - 7;
+  doc.rect(xLeftCol - 1, yTableTop, rectWidth, 9);
+  yTopRightCorner = _yVal + 2;
+  _yVal += 8;
+
+  //Table Body
+  doc.setFontType("normal");
+  doc.setFontSize(16);
+  for(var i = 0; i < major.courses.length; i++){
+    var credits = major.courses[i].getCredits();
+    doc.text(xLeftCol, _yVal, major.courses[i].subject + " " + major.courses[i].courseNum + ": " + major.courses[i].courseTitle);
+    doc.text(xCreditCol, _yVal, "" + credits);
+    _totalCredits += credits;
+    _yVal += 7;
+  }
+  doc.rect(xLeftCol - 1, yTopRightCorner, rectWidth, (_yVal - 3) - yTopRightCorner);
+  doc.line(xCreditCol - 13, yTableTop, xCreditCol - 13, _yVal - 3)
+  //Table Footer
+  _yVal += 4;
+  doc.setFontSize(20);
+  doc.setFontType("bold");
+  doc.text(xCreditCol - 34, _yVal, "Total:");
+  doc.text(xCreditCol - 2, _yVal, "" + _totalCredits);
+
+  //End
+  _yVal += 8;
+
+}
+
+function testMajor(): Major{
+  var majorName = "The Major Name";
+  var courseTitle = "Title Of Transfer Course ";
+  var courseNum = "40";
+  var subject = "SUB";
+  var course;
+  var numberOfCourses = 3;
+
+  var major = new Major(majorName);
+  for(var i = 0; i < numberOfCourses; i++){
+    course = new TransferCourse(subject, courseNum + i, courseTitle + i);
+    course.setCredits(4);
+    major.addCourse(course);
+  }
+
+  return major;
+}
+//---------------------------------------------------------
 
 class TransferCourse {
-
+  private credits: number;
   constructor(public subject: string,
               public courseNum: string,
               public courseTitle: string) {
@@ -95,11 +187,41 @@ class TransferCourse {
         }
 
         public init(): void {
+          this.credits = 0;
+        }
 
+        public setCredits(credits){
+          this.credits = credits;
+        }
+
+        public getCredits(): number{
+          return this.credits;
         }
 
         public toString(): string {
           return this.subject + " " + this.courseNum + ": " + this.courseTitle;
         }
 
+}
+
+class Major {
+  public courses: TransferCourse[];
+  public isMinor: boolean;
+
+  constructor(public name: string) {
+          this.init();
+        }
+
+        public init(): void {
+          this.courses = [];
+          this.isMinor= false;
+        }
+
+        public addCourse(course: TransferCourse): void{
+          this.courses.push(course);
+        }
+
+        public setMinor(){
+          this.isMinor = true;
+        }
 }

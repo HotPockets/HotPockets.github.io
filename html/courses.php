@@ -91,7 +91,7 @@
 <script>populateList(document.getElementById('coursesOutputBox'), outputList);
 
 $("document").ready(function() {
-
+//createPDF(new jsPDF());
   //Populate courses
   //When the dropdown changes
   $("#subjectSelect").change(function(){
@@ -150,21 +150,6 @@ $("document").ready(function() {
   });
 
 });
-/*
-var doc = new jsPDF();
-
-doc.setTextColor(100);
-doc.setFont("helvetica");
-doc.setFontType("bold");
-doc.setFontSize(36);
-doc.setTextColor(255, 0, 0);
-doc.text(65, 30, 'Marist College');
-doc.setFontSize(28);
-doc.setTextColor(0, 0, 0);
-doc.text(38, 40, 'Unofficial Transfer Evaluation');
-
-doc.save('Test.pdf');
-*/
 </script>
 </div>
 
