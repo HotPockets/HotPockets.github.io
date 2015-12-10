@@ -99,6 +99,37 @@ function getSubjects(){
   }
 }
 ########################################################################################################################
+function adminValidate($pid)
+{
+    # Make the query
+    $query = "SELECT user_id FROM admin WHERE user_id = $pid;" ;
+
+    # Execute the query
+    $results = pg_query( $dbc, $query ) ;
+    check_results($results);
+
+    # If we get no rows, the login failed
+    if (pg_num_rows( $results ) == 0 ){
+      return false ;
+    } else {
+      return true;
+    }
+
+
+    # We have at least one row, so get the first one and return it
+    #$row = pg_fetch_array($results, NULL, PGSQL_ASSOC) ;
+    #echo "ROW: " . $row;
+
+    #$pid = (isset($row['user_id']) ? $row['user_id'] : null);
+
+    #if($pid == null){
+    #  echo "The pid is null";
+    #}
+
+    #echo "Found PID: " . $pid;
+    #return intval($pid) ;
+}
+########################################################################################################################
 function getCourses($subject){
   global $dbc;
   #console_log("Getting Courses for " . $subject);
@@ -142,7 +173,7 @@ function saveCourses($user_id, $subject, $course_num, $name){
 function getMajor($currMajor){
   global $dbc;
   #console_log("Getting Majors");
-  $query = "SELECT distinct major_name FROM major";
+  $query = "SELECT distinct major_name FROM majors ORDER BY major_name;";
 
   #console_log($query);
   $results = pg_query($dbc, $query);
@@ -159,7 +190,7 @@ function getMajor($currMajor){
 function getMinor($currMinor){
   global $dbc;
   #console_log("Getting Minors");
-  $query = "SELECT distinct minor_name FROM minor";
+  $query = "SELECT distinct minor_name FROM minors ORDER BY minor_name";
 
   #console_log($query);
   $results = pg_query($dbc, $query);
@@ -214,7 +245,25 @@ function checkMinor($name, $minor_name){
 ########################################################################################################################
 function profileList(){
   global $dbc;
-  session_start();
+  #session_start();
+  #$user_id = (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null);
+
+  $query = "SELECT DISTINCT u.first_name, u.last_name, u.email, tr.name
+            FROM users u, transcript tr
+            WHERE u.user_id = tr.user_id;";
+  $results = pg_query($dbc, $query);
+  check_results($results);
+
+  while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
+    $name = (isset($row['name']) ? $row['name'] : null);
+    echo '<option value="' . $name  . '" ';
+    echo '>' . $name . '</option>';
+  }
+}
+########################################################################################################################
+function adminProfileList(){
+  global $dbc;
+  #session_start();
   $user_id = (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null);
 
   $query = "SELECT DISTINCT t.name

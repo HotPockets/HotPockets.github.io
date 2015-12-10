@@ -62,15 +62,34 @@
           </form>
         </div>
         <div class="col-sm-4">
-          <form class="form-horizontal" id="majorSelectForm2">
-            <h3><b>Select a Major</b></h3>
+          <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#major2">Major</a></li>
+            <li><a data-toggle="tab" href="#minor2">Minor</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="major2">
+            <form class="form-horizontal" id="majorSelectForm2">
+              <h3><b>Select a Major</b></h3>
+              <select name="formMajor2" style="width: 100%;" id="major2Select">
+              <option value="none">Select a Major</option>
+                <?php
+                  getMajor();
+                ?>
+              </select>
+          </form>
+        </div>
+        <div class="tab-pane" id="minor2">
+          <form class="form-horizontal" id="minorSelectForm2">
+            <h3><b>Select a Minor</b></h3>
             <select name="formMajor2" style="width: 100%;" id="major2Select">
-            <option value="none">Select a Major</option>
+            <option value="none">Select a Minor</option>
               <?php
-                getSubjects();
+                getMinor();
               ?>
             </select>
         </form>
+      </div>
+      </div>
       </div>
       <div class="col-sm-4">
         <form class="form-horizontal" method="post" id="majorSelectForm3">

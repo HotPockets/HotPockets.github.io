@@ -63,8 +63,13 @@
                     if($pid == -1){
                       echo '<p style=color:red>Login failed please try again.</p>';
                 	   } else {
-                       console_log("Logging in with PID " . $pid);
-                      load('profile.php', $pid);
+                       if (adminValidate($pid)){
+                        console_log("Logging in admin with PID " . $pid);
+                        load('adminProfile.php', $pid); 
+                       } else {
+                        console_log("Logging in with PID " . $pid);
+                        load('profile.php', $pid);
+                       }
                   	}
                   }
                 ?>
