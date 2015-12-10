@@ -258,17 +258,20 @@ function checkMinor($name, $minor_name){
   #console_log($query);
   $results = pg_query($dbc,$query);
   check_results($results);
-  $output = "testing";
+  $output = "";
+  if (pg_num_rows($results) == 0){
+    echo "failed";
+  } else {
+    while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
+      $course_title = (isset($row['course_title']) ? $row['course_title'] : null);
+      $course_num = (isset($row['course_num']) ? $row['course_num'] : null);
+      $subject = (isset($row['subject']) ? $row['subject'] : null);
+      $credits = (isset($row['credits']) ? $row['credits'] : null);
 
-  #while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
-  #  $course_title = (isset($row['course_title']) ? $row['course_title'] : null);
-  #  $course_num = (isset($row['course_num']) ? $row['course_num'] : null);
-  #  $subject = (isset($row['subject']) ? $row['subject'] : null);
-  #  $credits = (isset($row['credits']) ? $row['credits'] : null);
-
-  #  $output = $output . $course_title . "," . $course_num . "," . $subject . "," . $credits . ",";
-  #}
-  echo $output;
+      $output = $output . $course_title . "," . $course_num . "," . $subject . "," . $credits . ",";
+    }
+    echo $output;
+  }
 }
 ########################################################################################################################
 function adminProfileList(){
@@ -360,10 +363,10 @@ function check_results($results) {
   global $dbc;
 
   if($results != true) {
-    console_log("No Results from Query." . pg_last_error($dbc));
+    #console_log("No Results from Query." . pg_last_error($dbc));
     return false;
   } else {
-    console_log("Query Returned Results");
+    #console_log("Query Returned Results");
     return true;
   }
 }

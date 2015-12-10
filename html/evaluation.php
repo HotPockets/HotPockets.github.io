@@ -204,7 +204,11 @@
                       type: "minor"},
                success: function(data) {
                    console.log(data);
-                   //handleData(data, major1);
+                   if (data === "failed"){
+
+                   } else {
+                    handleData(data, major1);
+                   }
                },
                error: function (xhr, ajaxOptions, thrownError) {
                  console.log(xhr.status);
@@ -244,27 +248,37 @@
   function handleData(data, major){
     var str = "" + data;
     var arr = str.split(",");
-
+    console.log("data " + str);
     var subject = "";
     var courseNum = "";
     var courseTitle = "";
     var credits = 0;
+    console.log(arr.length);
+    var runtime = Math.floor((arr.length - 1) / 4);
+    console.log("can i force it to be " + runtime);
 
-    for (var i = 0; i < arr.length; i + 4){
-        courseTitle = arr[i];
-        courseNum = arr[i+1];
-        subject = arr[i+2];
-        credits = parseInt(arr[i+3]);
+    for (var i = 0; i < runtime; i++){
+      for(var j = 0; j < 4; j++){
+        console.log("i: " + i + " j: " + j);
+        /*courseTitle = arr[j];
+        courseNum = arr[j+1];
+        subject = arr[j+2];
+        credits = parseInt(arr[j+3]);
 
         console.log("Title: " + courseTitle);
         console.log("Num: " + courseNum);
         console.log("Sub: " + subject);
-        console.log("Credits: " + credits);
+        console.log("Credits: " + credits);*/
+      }
+    }
+
+    /*for (var i = 0; i < arr.length; i + 4){
+
 
         course = new TransferCourse(subject, courseNum, courseTitle);
         course.setCredits(credits);
         major.addCourse(course);
-    }
+    }*/
 
   }
 
