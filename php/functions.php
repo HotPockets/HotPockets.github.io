@@ -207,7 +207,8 @@ function getMinor($currMinor){
     if($minor_name==$currMinor) echo 'selected="selected"';
     echo '>' . $minor_name . '</option>';
   }
-}########################################################################################################################
+}
+########################################################################################################################
 function checkMajor($name, $major_name){
   global $dbc;
   session_start();
@@ -226,6 +227,17 @@ function checkMajor($name, $major_name){
   #console_log($query);
   $results = pg_query($dbc,$query);
   check_results($results);
+  $output = "";
+
+  while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
+    $course_title = (isset($row['course_title']) ? $row['course_title'] : null);
+    $course_num = (isset($row['course_num']) ? $row['course_num'] : null);
+    $subject = (isset($row['subject']) ? $row['subject'] : null);
+    $credits = (isset($row['credits']) ? $row['credits'] : null);
+
+    $output = $output . $course_title . "," . $course_num . "," . $subject . "," . $credits . ",";
+  }
+  echo $output;
 }
 ########################################################################################################################
 function checkMinor($name, $minor_name){
@@ -246,6 +258,17 @@ function checkMinor($name, $minor_name){
   #console_log($query);
   $results = pg_query($dbc,$query);
   check_results($results);
+  $output = "testing";
+
+  #while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
+  #  $course_title = (isset($row['course_title']) ? $row['course_title'] : null);
+  #  $course_num = (isset($row['course_num']) ? $row['course_num'] : null);
+  #  $subject = (isset($row['subject']) ? $row['subject'] : null);
+  #  $credits = (isset($row['credits']) ? $row['credits'] : null);
+
+  #  $output = $output . $course_title . "," . $course_num . "," . $subject . "," . $credits . ",";
+  #}
+  echo $output;
 }
 ########################################################################################################################
 function adminProfileList(){

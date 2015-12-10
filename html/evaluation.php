@@ -42,6 +42,9 @@
           </div>
         </nav>
         <div class="landing">
+          <script>
+          var evalName = "";
+          </script>
           <?php
             require( '../php/connect.php' );
             require( '../php/functions.php' );
@@ -52,6 +55,7 @@
               console_log("Logged in with PID " . $_SESSION['user_id']);
             }
             console_log($_SESSION['evalName']);
+            echo '<script>evalName = "' . $_SESSION['evalName'] .'";</script>';
           ?>
           <br>
           <h1>Marist Majors Evaluation</h1>
@@ -188,7 +192,30 @@
       }
 
       //Start building the majors
-      
+      console.log("Starting to build majors");
+      if (major1 !== null){
+        if (major1.isMinor){
+          //ajax thing for minor
+          $.ajax({
+               url: 'source/php/checkMajor.php',
+               type: 'POST',
+               data: {majorName : major1.name,
+                      transName : evalName,
+                      type: "minor"},
+               success: function(data) {
+                   console.log(data);
+                   //handleData(data, major1);
+               },
+               error: function (xhr, ajaxOptions, thrownError) {
+                 console.log(xhr.status);
+                 console.log(xhr.responseText);
+                 console.log(thrownError);
+             }
+           });
+        } else {
+          //ajax thing for major
+        }
+      }
 
 /*
             console.log("About to save " + sub + " " + num + ".");
@@ -213,6 +240,34 @@
     });
 
   });
+
+  function handleData(data, major){
+    var str = "" + data;
+    var arr = str.split(",");
+
+    var subject = "";
+    var courseNum = "";
+    var courseTitle = "";
+    var credits = 0;
+
+    for (var i = 0; i < arr.length; i + 4){
+        courseTitle = arr[i];
+        courseNum = arr[i+1];
+        subject = arr[i+2];
+        credits = parseInt(arr[i+3]);
+
+        console.log("Title: " + courseTitle);
+        console.log("Num: " + courseNum);
+        console.log("Sub: " + subject);
+        console.log("Credits: " + credits);
+
+        course = new TransferCourse(subject, courseNum, courseTitle);
+        course.setCredits(credits);
+        major.addCourse(course);
+    }
+
+  }
+
   </script>
 
 <div class="footer">
