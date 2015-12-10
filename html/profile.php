@@ -52,7 +52,7 @@
           <br><br>
           <div class="row">
             <div class="col-md-6 col-md-offset-3">
-              <form class="form-horizontal input-lg">
+              <form class="form-horizontal input-lg" method="post">
                 <select style="width: 100%;" id="savesOutputBox" name="selectedSave">
                   <option value='none'>Please select an evaluation</option>
                   <?php
@@ -64,8 +64,9 @@
             <?php
               if (isset($_POST['evaluate'])) {
                 $name = isset($_POST['selectedSave']) ? $_POST['selectedSave'] : false;
-                if ($name){
-                  echo $name;
+                if ($name && $name != 'none'){
+                  $_SESSION['evalName'] = $name;
+                    load("evaluation.php", $_SESSION['user_id']);
                 } else {
                   echo 'Please select a saved evaluation from the box.';
                 }

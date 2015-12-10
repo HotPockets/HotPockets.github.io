@@ -36,52 +36,51 @@
           </div>
         </nav>
         <div class="landing">
+          <?php
+            require( '../php/connect.php' );
+            require( '../php/functions.php' );
+            session_start();
+            if(intval($_SESSION['user_id']) == "" || intval($_SESSION['user_id']) < 0){
+              load("login.php", -1);
+            } else {
+              console_log("Logged in with PID " . $_SESSION['user_id']);
+            }
+            console_log($_SESSION['evalName']);
+          ?>
           <br>
           <h1>Marist Majors Evaluation</h1>
           <h3>Chose up to three majors to see degree progress</h3>
           <div class="col-sm-4">
-            <form class="form-horizontal" method="post" id="subjectSelectForm">
+            <form class="form-horizontal" id="majorsSelectForm1">
               <h3><b>Select a Major</b></h3>
-              <select name="formSubject" style="width: 100%;" id="subjectSelect">
-              <option value="none">Select a Subject</option>
+              <select name="formMajor1" style="width: 100%;" id="major1Select">
+              <option value="none">Select a Major</option>
                 <?php
-                require( '../php/connect.php' );
-                require( '../php/functions.php' );
-                session_start();
-                getSubjects();
+                  getMajor();
                 ?>
               </select>
-              <noscript><input type="submit" name="selectedSubject" id="selectedSubject" value="Submit"></noscript>
           </form>
         </div>
         <div class="col-sm-4">
-          <form class="form-horizontal" method="post" id="subjectSelectForm">
+          <form class="form-horizontal" id="majorSelectForm2">
             <h3><b>Select a Major</b></h3>
-            <select name="formSubject" style="width: 100%;" id="subjectSelect">
-            <option value="none">Select a Subject</option>
+            <select name="formMajor2" style="width: 100%;" id="major2Select">
+            <option value="none">Select a Major</option>
               <?php
-              require( '../php/connect.php' );
-              require( '../php/functions.php' );
-              session_start();
-              getSubjects();
+                getSubjects();
               ?>
             </select>
-            <noscript><input type="submit" name="selectedSubject" id="selectedSubject" value="Submit"></noscript>
         </form>
       </div>
       <div class="col-sm-4">
-        <form class="form-horizontal" method="post" id="subjectSelectForm">
+        <form class="form-horizontal" method="post" id="majorSelectForm3">
           <h3><b>Select a Major</b></h3>
-          <select name="formSubject" style="width: 100%;" id="subjectSelect">
-          <option value="none">Select a Subject</option>
+          <select name="formMajor3" style="width: 100%;" id="major3Select">
+          <option value="none">Select a Major</option>
             <?php
-            require( '../php/connect.php' );
-            require( '../php/functions.php' );
-            session_start();
-            getSubjects();
+              getSubjects();
             ?>
           </select>
-          <noscript><input type="submit" name="selectedSubject" id="selectedSubject" value="Submit"></noscript>
           <br><br>
           <button class="btn btn-lg btn-danger" style="float:right;" id="saveButton">Submit Evaluation</button>
       </form>
