@@ -126,6 +126,8 @@ $("document").ready(function() {
     var transName = $('#eval_name').val();
     if (transName.length < 1){
       alert("Please enter an Evaluation Name.");
+    } else if(list.length < 1){
+      alert("Please select at least one course.");
     } else {
       //Loop through and save each course
       for (var i = 0; i < list.length; i++){
