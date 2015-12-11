@@ -192,6 +192,7 @@
       }
 
       //Start building the majors
+      //MAJOR 1 ----------------------------------------------------------
       console.log("Starting to build majors");
       if (major1 !== null){
         if (major1.isMinor){
@@ -218,21 +219,45 @@
            });
         } else {
           //ajax thing for major
+          $.ajax({
+               url: 'source/php/checkMajor.php',
+               type: 'POST',
+               data: {majorName : major1.name,
+                      transName : evalName,
+                      type: "major"},
+               success: function(data) {
+                   console.log(data);
+                   if (data === "failed"){
+
+                   } else {
+                    handleData(data, major1);
+                   }
+               },
+               error: function (xhr, ajaxOptions, thrownError) {
+                 console.log(xhr.status);
+                 console.log(xhr.responseText);
+                 console.log(thrownError);
+             }
+           });
         }
       }
-
-/*
-            console.log("About to save " + sub + " " + num + ".");
-            //Post the course
+        //MAJOR 2 ----------------------------------------------------------
+        if (major2 !== null){
+          if (major2.isMinor){
+            //ajax thing for minor
             $.ajax({
-                 url: 'source/php/saveSelectedCourses.php',
+                 url: 'source/php/checkMajor.php',
                  type: 'POST',
-                 data: {subject : sub,
-                        courseNum : num,
-                        name: transName},
+                 data: {majorName : major2.name,
+                        transName : evalName,
+                        type: "minor"},
                  success: function(data) {
                      console.log(data);
-                     console.log("Saved " + sub + " " + num + ".");
+                     if (data === "failed"){
+
+                     } else {
+                      handleData(data, major2);
+                     }
                  },
                  error: function (xhr, ajaxOptions, thrownError) {
                    console.log(xhr.status);
@@ -240,7 +265,79 @@
                    console.log(thrownError);
                }
              });
-             */
+          } else {
+            //ajax thing for major
+            $.ajax({
+                 url: 'source/php/checkMajor.php',
+                 type: 'POST',
+                 data: {majorName : major2.name,
+                        transName : evalName,
+                        type: "major"},
+                 success: function(data) {
+                     console.log(data);
+                     if (data === "failed"){
+
+                     } else {
+                      handleData(data, major2);
+                     }
+                 },
+                 error: function (xhr, ajaxOptions, thrownError) {
+                   console.log(xhr.status);
+                   console.log(xhr.responseText);
+                   console.log(thrownError);
+               }
+             });
+          }
+        }
+          //MAJOR 3 ----------------------------------------------------------
+          if (major3 !== null){
+            if (major3.isMinor){
+              //ajax thing for minor
+              $.ajax({
+                   url: 'source/php/checkMajor.php',
+                   type: 'POST',
+                   data: {majorName : major3.name,
+                          transName : evalName,
+                          type: "minor"},
+                   success: function(data) {
+                       console.log(data);
+                       if (data === "failed"){
+
+                       } else {
+                        handleData(data, major3);
+                       }
+                   },
+                   error: function (xhr, ajaxOptions, thrownError) {
+                     console.log(xhr.status);
+                     console.log(xhr.responseText);
+                     console.log(thrownError);
+                 }
+               });
+            } else {
+              //ajax thing for major
+              $.ajax({
+                   url: 'source/php/checkMajor.php',
+                   type: 'POST',
+                   data: {majorName : major3.name,
+                          transName : evalName,
+                          type: "major"},
+                   success: function(data) {
+                       console.log(data);
+                       if (data === "failed"){
+
+                       } else {
+                        handleData(data, major3);
+                       }
+                   },
+                   error: function (xhr, ajaxOptions, thrownError) {
+                     console.log(xhr.status);
+                     console.log(xhr.responseText);
+                     console.log(thrownError);
+                 }
+               });
+            }
+      }
+
     });
 
   });
@@ -253,33 +350,27 @@
     var courseNum = "";
     var courseTitle = "";
     var credits = 0;
+    arr.pop(); //Remove last element which is garbage
     console.log(arr.length);
-    var runtime = Math.floor((arr.length - 1) / 4);
-    console.log("can i force it to be " + runtime);
 
-    for (var i = 0; i < runtime; i++){
-      for(var j = 0; j < 4; j++){
-        console.log("i: " + i + " j: " + j);
-        /*courseTitle = arr[j];
-        courseNum = arr[j+1];
-        subject = arr[j+2];
-        credits = parseInt(arr[j+3]);
-
-        console.log("Title: " + courseTitle);
-        console.log("Num: " + courseNum);
-        console.log("Sub: " + subject);
-        console.log("Credits: " + credits);*/
-      }
-    }
-
-    /*for (var i = 0; i < arr.length; i + 4){
-
+    for (var i = 0; i < arr.length; i++){
+        courseTitle = arr[i];
+        i++;
+        courseNum = arr[i];
+        i++;
+        subject = arr[i];
+        i++;
+        credits = parseInt(arr[i]);
 
         course = new TransferCourse(subject, courseNum, courseTitle);
         course.setCredits(credits);
         major.addCourse(course);
-    }*/
+    }
 
+    //Print for testing
+    for(var i = 0; i < major.courses.length; i++){
+      console.log("Sub: " + major.courses[i].subject + " Num: " + major.courses[i].courseNum + " Title " + major.courses[i].courseTitle + " Credits " + major.courses[i].credits);
+    }
   }
 
   </script>
