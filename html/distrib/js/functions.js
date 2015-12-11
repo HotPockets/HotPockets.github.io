@@ -59,14 +59,14 @@ function updateCourses(sub, sel, coursesOutputBox) {
 function populateList(element, text) {
     element.innerHTML = text;
 }
-function createPDF(doc) {
+function createPDF(doc, majorArr, evalName) {
     _yVal = 56;
-    var major = testMajor();
+    var major = null;
     writeHeading(doc);
-    for (var i = 0; i < 3; i++) {
-        writeMajor(doc, major);
+    for (var i = 0; i < majorArr.length; i++) {
+        writeMajor(doc, majorArr[i]);
     }
-    doc.save('Test.pdf');
+    doc.save(evalName + '.pdf');
 }
 function writeHeading(doc) {
     doc.setTextColor(100);
@@ -87,7 +87,12 @@ function writeMajor(doc, major) {
     var yTableTop;
     _totalCredits = 0;
     doc.setFontSize(22);
-    doc.text(xLeftCol, _yVal, major.name);
+    if (major.isMinor) {
+        doc.text(xLeftCol, _yVal, "Minor in " + major.name);
+    }
+    else {
+        doc.text(xLeftCol, _yVal, "Major in " + major.name);
+    }
     _yVal += 10;
     doc.setFontSize(20);
     doc.text(xLeftCol, _yVal, "Course");
@@ -111,23 +116,13 @@ function writeMajor(doc, major) {
     doc.setFontSize(20);
     doc.setFontType("bold");
     doc.text(xCreditCol - 34, _yVal, "Total:");
-    doc.text(xCreditCol - 2, _yVal, "" + _totalCredits);
-    _yVal += 8;
-}
-function testMajor() {
-    var majorName = "The Major Name";
-    var courseTitle = "Title Of Transfer Course ";
-    var courseNum = "40";
-    var subject = "SUB";
-    var course;
-    var numberOfCourses = 3;
-    var major = new Major(majorName);
-    for (var i = 0; i < numberOfCourses; i++) {
-        course = new TransferCourse(subject, courseNum + i, courseTitle + i);
-        course.setCredits(4);
-        major.addCourse(course);
+    if (_totalCredits > 9) {
+        doc.text(xCreditCol - 2, _yVal, "" + _totalCredits);
     }
-    return major;
+    else {
+        doc.text(xCreditCol, _yVal, "" + _totalCredits);
+    }
+    _yVal += 8;
 }
 var TransferCourse = (function () {
     function TransferCourse(subject, courseNum, courseTitle) {

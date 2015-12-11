@@ -145,6 +145,7 @@
     </div>
     </div>
     <button class="btn btn-lg btn-danger" id="evalButton">Evaluate Selections</button>
+    <button class="btn btn-lg btn-danger" id="pdfButton" style="display: none">Generate PDF</button>
   </div>
 
   <script>
@@ -337,7 +338,27 @@
                });
             }
       }
+      //Now that we have something
+      if (major1 == null && major2 == null && major3 == null){
+        alert("You must choose at least one major or minor.");
+      } else {
+        $("#pdfButton").css("display", "block");
 
+      }
+
+    });
+    $("#pdfButton").click(function(){
+      var majorArr = [];
+      if(major1 != null){
+        majorArr.push(major1);
+      }
+      if(major2 != null){
+        majorArr.push(major2);
+      }
+      if(major3 != null){
+        majorArr.push(major3);
+      }
+      createPDF(new jsPDF(), majorArr, evalName);
     });
 
   });
