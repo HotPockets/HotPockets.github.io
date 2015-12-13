@@ -52,6 +52,7 @@
           <br><br>
           <div class="row">
             <div class="col-md-6 col-md-offset-3">
+              <h3 style="float:left; margin-left: 15px">Saved Evaluations</h3>
               <form class="form-horizontal input-lg" method="post">
                 <select style="width: 100%;" id="savesOutputBox" name="selectedSave">
                   <option value='none'>Please select an evaluation</option>
@@ -79,7 +80,7 @@
           </div>
           <br><br>
           <form class="form-horizontal" method="post">
-            <a href="courses.php" class="btn btn-lg btn-danger">Input More Courses</a>
+            <a href="courses.php" class="btn btn-lg btn-danger">Create Evaluation</a>
             <input class="btn btn-lg btn-danger" type="submit" name="logout" value="Log Out">
           </form>
 

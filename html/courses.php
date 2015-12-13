@@ -90,9 +90,10 @@
 
   </select>
 </form>
-<br><br><br><br>
-<input type="eval_name" id="eval_name" name="eval_name" style="float:left;" placeholder="Evaluation Name">
-<button class="btn btn-lg btn-danger" id="saveButton">Submit Evaluation</button>
+<br><br><br>
+<input type="eval_name" id="eval_name" name="eval_name" style="float:right; margin-right:15px;" placeholder="Evaluation Name">
+<br><br>
+<button class="btn btn-lg btn-danger" id="saveButton" style="float:right; margin-top: 5px; margin-right:15px;">Submit Evaluation</button>
 <script>populateList(document.getElementById('coursesOutputBox'), outputList);
 
 $("document").ready(function() {
