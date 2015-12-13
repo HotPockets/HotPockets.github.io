@@ -50,6 +50,7 @@
           echo '<h1>Welcome ' . $_SESSION['first_name'] .'!</h1>';
           ?>
           <br><br>
+          <div class="holder">
           <div class="row">
             <div class="col-md-6 col-md-offset-3">
               <h3 style="float:left; margin-left: 15px">Saved Evaluations</h3>
@@ -85,6 +86,7 @@
           </form>
 
         </div>
+      </div>
 
               <div class="footer">
                 <br><br><br>
