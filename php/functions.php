@@ -311,6 +311,32 @@ function profileList(){
   }
 }
 ########################################################################################################################
+function seeWhatSticks($name){
+  global $dbc;
+  session_start();
+  $user_id = (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null);
+
+  $query = "SELECT distinct m.course_title, m.course_num, m.subject, m.credits
+            FROM marist m, transcript tc, transfer t
+            WHERE tc.name = '$name'
+              and tc.user_id = $user_id
+              and tc.transfer_id = t.transfer_id
+              and t.m_course_num = m.course_num
+              and t.m_subject = m.subject;";
+  $results = pg_query($dbc,$query);
+  check_results($results);
+
+  while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
+    $course_title = (isset($row['course_title']) ? $row['course_title'] : null);
+    $course_num = (isset($row['course_num']) ? $row['course_num'] : null);
+    $subject = (isset($row['subject']) ? $row['subject'] : null);
+    $credits = (isset($row['credits']) ? $row['credits'] : null);
+
+    $output = $output . $course_title . "," . $course_num . "," . $subject . "," . $credits . ",";
+  }
+  echo $output;
+}
+########################################################################################################################
 function transcriptSelect($name){
   global $dbc;
   session_start();
