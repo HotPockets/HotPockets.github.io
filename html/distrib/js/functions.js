@@ -94,11 +94,14 @@ function writeMajor(doc, major) {
         doc.text(xLeftCol, _yVal, "Major in " + major.name);
     }
     _yVal += 10;
+    yTableTop = _yVal - 7;
+    doc.rect(xLeftCol - 1, yTableTop, rectWidth, 9);
+    doc.setDrawColor(0);
+    doc.setFillColor(255, 0, 0);
+    doc.rect(xLeftCol - 1, yTableTop, rectWidth, 9, 'FD');
     doc.setFontSize(20);
     doc.text(xLeftCol, _yVal, "Course");
     doc.text(xCreditCol - 10, _yVal, "Credits");
-    yTableTop = _yVal - 7;
-    doc.rect(xLeftCol - 1, yTableTop, rectWidth, 9);
     yTopRightCorner = _yVal + 2;
     _yVal += 8;
     doc.setFontType("normal");
