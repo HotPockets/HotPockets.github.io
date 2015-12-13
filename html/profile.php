@@ -53,7 +53,7 @@
           <div class="holder">
           <div class="row">
             <div class="col-md-6 col-md-offset-3">
-              <h3 style="float:left; margin-left: 15px">Saved Evaluations</h3>
+              <h3>Saved Evaluations</h3>
               <form class="form-horizontal input-lg" method="post">
                 <select style="width: 100%;" id="savesOutputBox" name="selectedSave">
                   <option value='none'>Please select an evaluation</option>
