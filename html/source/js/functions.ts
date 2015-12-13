@@ -137,7 +137,7 @@ function writeMajor(doc, major: Major){
   doc.setFillColor(255,0,0);
   doc.rect(xLeftCol - 1, yTableTop, rectWidth, 9, 'FD');
   doc.setFontSize(20);
-  doc.text(xLeftCol, _yVal, "Course");
+  doc.text(xLeftCol, _yVal, "Marist Course");
   doc.text(xCreditCol -10, _yVal, "Credits");
   yTopRightCorner = _yVal + 2;
   _yVal += 8;
