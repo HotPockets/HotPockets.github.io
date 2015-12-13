@@ -51,37 +51,39 @@
           ?>
           <br><br>
           <div class="holder">
-          <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-              <h3>Saved Evaluations</h3>
-              <form class="form-horizontal input-lg" method="post">
-                <select style="width: 100%;" id="savesOutputBox" name="selectedSave">
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3">
+                <br>
+                <h3>Saved Evaluations</h3>
+                <form class="form-horizontal input-lg" method="post">
+                <select style="width: 100%; color:black;" id="savesOutputBox" name="selectedSave">
                   <option value='none'>Please select an evaluation</option>
                   <?php
                   profileList();
                   ?>
                 </select>
+                <a href="courses.php" class="btn btn-lg btn-danger" style="margin-top: 6px">Create Evaluation</a>
                 <input class="btn btn-lg btn-danger" type="submit" name="evaluate" value="Evaluate Selection">
-            </form>
-            <?php
-              if (isset($_POST['evaluate'])) {
-                $name = isset($_POST['selectedSave']) ? $_POST['selectedSave'] : false;
-                if ($name && $name != 'none'){
-                  $_SESSION['evalName'] = $name;
-                    load("evaluation.php", $_SESSION['user_id']);
-                } else {
-                  echo 'Please select a saved evaluation from the box.';
-                }
-              }
-              if (isset($_POST['logout'])) {
-                logOut();
-              }
-            ?>
+                </form>
+                <?php
+                  if (isset($_POST['evaluate'])) {
+                    $name = isset($_POST['selectedSave']) ? $_POST['selectedSave'] : false;
+                    if ($name && $name != 'none'){
+                      $_SESSION['evalName'] = $name;
+                        load("evaluation.php", $_SESSION['user_id']);
+                    } else {
+                      echo 'Please select a saved evaluation from the box.';
+                    }
+                  }
+                  if (isset($_POST['logout'])) {
+                    logOut();
+                  }
+                ?>
             </div>
           </div>
           <br><br>
           <form class="form-horizontal" method="post">
-            <a href="courses.php" class="btn btn-lg btn-danger">Create Evaluation</a>
+            <br><br>
             <input class="btn btn-lg btn-danger" type="submit" name="logout" value="Log Out">
           </form>
 
