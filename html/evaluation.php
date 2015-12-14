@@ -147,12 +147,6 @@
     <button class="btn btn-lg btn-danger" id="evalButton">Evaluate Selections</button>
     <button class="btn btn-lg btn-danger" id="pdfButton" style="display: none">Generate PDF</button>
   </div>
-  <div class="progress">
-  <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
-  aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%">
-    50% Complete (info)
-  </div>
-</div>
   <script>
   $("document").ready(function() {
     var major1 = null;
