@@ -91,7 +91,6 @@
                   <button class="btn btn-lg btn-danger" type="submit" id="evaluate" name="evaluate">Evaluate Selection</button>
               </div>
           </div>
-          <br>
           <form class="form-horizontal" method="post">
             <br><br>
             <input class="btn btn-lg btn-danger" type="submit" name="logout" value="Log Out">
