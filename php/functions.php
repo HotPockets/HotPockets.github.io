@@ -337,6 +337,25 @@ function seeWhatSticks($name){
   echo $output;
 }
 ########################################################################################################################
+function userTranscript($email){
+  global $dbc;
+
+  $query = "SELECT DISTINCT tr.name
+            FROM users u, transcript tr
+            WHERE tr.user_id = u.user_id
+              and u.email = '$email'
+            ORDER BY tr.name;";
+
+  $results = pg_query($dbc,$query);
+  check_results($results);
+
+  while($row = pg_fetch_array($results, NULL, PGSQL_ASSOC)){
+    $name = (isset($row['name']) ? $row['name'] : null);
+    echo '<option value="' . $name  . '" ';
+    echo '>' . $name . '</option>';
+  }
+}
+########################################################################################################################
 function transcriptSelect($name){
   global $dbc;
   session_start();
