@@ -107,7 +107,7 @@
                         $pid = validate($email, $password);
                       }
                       if($pid == -1){
-                        echo '<p style=color:red>Login failed please try again.</p>';
+                        echo '<p style=color:red>The email entered is already associated with an account.</p>';
                        } else {
                          console_log("Logging in with PID " . $pid);
                         load('profile.php', $pid);

@@ -90,6 +90,9 @@ function writeMajor(doc, major) {
     if (major.isMinor) {
         doc.text(xLeftCol, _yVal, "Minor in " + major.name);
     }
+    else if (major.name === "No Major") {
+        doc.text(xLeftCol, _yVal, "All Transferable Courses");
+    }
     else {
         doc.text(xLeftCol, _yVal, "Major in " + major.name);
     }

@@ -147,18 +147,32 @@
     <button class="btn btn-lg btn-danger" id="evalButton">Evaluate Selections</button>
     <button class="btn btn-lg btn-danger" id="pdfButton" style="display: none">Generate PDF</button>
   </div>
-  <div class="progress">
-  <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
-  aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%">
-    50% Complete (info)
-  </div>
-</div>
   <script>
   $("document").ready(function() {
     var major1 = null;
     var major2 = null;
     var major3 = null;
 
+    var majorWhatSticks = new Major("No Major");
+
+        $.ajax({
+             url: 'source/php/seeWhatSticks.php',
+             type: 'POST',
+             data: {transName : evalName},
+             success: function(data) {
+                 console.log(data);
+                 if (data === "failed"){
+
+                 } else {
+                  handleData(data, majorWhatSticks);
+                 }
+             },
+             error: function (xhr, ajaxOptions, thrownError) {
+               console.log(xhr.status);
+               console.log(xhr.responseText);
+               console.log(thrownError);
+           }
+         });
     //Evaluate Selections
     $("#evalButton").click(function(){
       //Check first major selection
@@ -363,6 +377,7 @@
       if(major3 != null){
         majorArr.push(major3);
       }
+      majorArr.push(majorWhatSticks);
       createPDF(new jsPDF(), majorArr, evalName);
     });
 
