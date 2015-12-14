@@ -67,9 +67,8 @@
                     ?>
                   </select>
                   <!-- <a href="courses.php" class="btn btn-lg btn-danger" style="margin-top: 6px">Create Evaluation</a> -->
-                  <input class="btn btn-lg btn-danger" type="submit" name="evaluate" value="Evaluate Selection">
                   </form>
-
+                  <br>
                   <form class="form-horizontal input-lg" method="post">
                   <select style="width: 100%; color:black;" id="evalList" name="selectedEval">
 
@@ -89,9 +88,10 @@
                       logOut();
                     }
                   ?>
+                  <button class="btn btn-lg btn-danger" type="submit" id="evaluate" name="evaluate">Evaluate Selection</button>
               </div>
           </div>
-          <br><br>
+          <br>
           <form class="form-horizontal" method="post">
             <br><br>
             <input class="btn btn-lg btn-danger" type="submit" name="logout" value="Log Out">

@@ -337,13 +337,13 @@ function seeWhatSticks($name){
   echo $output;
 }
 ########################################################################################################################
-function userTranscript($email){
+function userTranscript($user_id){
   global $dbc;
 
   $query = "SELECT DISTINCT tr.name
             FROM users u, transcript tr
             WHERE tr.user_id = u.user_id
-              and u.email = '$email'
+              and u.user_id = $user_id
             ORDER BY tr.name;";
 
   $results = pg_query($dbc,$query);
