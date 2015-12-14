@@ -6,10 +6,16 @@
 <script src="./distrib/js/jquery-1.11.3.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="./distrib/css/bootstrap.min.css">
+<!-- Links to jsPDF -->
+<script type="text/javascript" src="distrib/js/jsPDF/jspdf.js"></script>
+<script type="text/javascript" src="distrib/js/jsPDF/libs/Deflate/adler32cs.js"></script>
+<script type="text/javascript" src="distrib/js/jsPDF/libs/FileSaver.js/FileSaver.js"></script>
+<script type="text/javascript" src="distrib/js/jsPDF/libs/Blob.js/BlobBuilder.js"></script>
 <!-- Optional theme -->
 <link rel="stylesheet" href="./distrib/css/bootstrap-theme.min.css">
 <!-- Custom styles for this template -->
 <link href="./distrib/css/theme.css" rel="stylesheet">
+<script src="./distrib/js/functions.js"></script>
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -92,7 +98,6 @@
               </div>
           </div>
           <form class="form-horizontal" method="post">
-            <br><br>
             <input class="btn btn-lg btn-danger" type="submit" name="logout" value="Log Out">
           </form>
 
@@ -100,6 +105,9 @@
       </div>
 
       <script>
+      var user_id = -1;
+      var evalName = "";
+
       $("document").ready(function() {
       //createPDF(new jsPDF());
         //Populate courses
@@ -107,6 +115,7 @@
         $("#adminProfileList").change(function(){
           //Get the selected value
            var selectedValue = this.value;
+           user_id = selectedValue;
            console.log("Selected " + selectedValue);
            //Post it to the file adminGetEvals.php
           $.ajax({
@@ -125,8 +134,69 @@
            });
         });
 
+        $("#evaluate").click(function(){
+          makeMajor();
+        });
 
       });
+
+      function makeMajor(){
+        var majorWhatSticks = new Major("No Major");
+        evalName = $("#evalList option:selected").text();
+        console.log(evalName);
+        console.log("ID: " + user_id);
+            $.ajax({
+                 url: 'source/php/somethingElse.php',
+                 type: 'POST',
+                 data: {id : user_id,
+                        transName : evalName},
+                 success: function(data) {
+                     console.log(data);
+                     if (data === "failed"){
+
+                     } else {
+                       console.log("Data: " + data);
+                      handleData(data, majorWhatSticks);
+                      var majorArr = [];
+                      majorArr.push(majorWhatSticks);
+                      createPDF(new jsPDF(), majorArr, evalName);
+                     }
+                 },
+                 error: function (xhr, ajaxOptions, thrownError) {
+                   console.log(xhr.status);
+                   console.log(xhr.responseText);
+                   console.log(thrownError);
+               }
+             });
+
+
+      }
+
+      function handleData(data, major){
+        var str = "" + data;
+        var arr = str.split(",");
+        console.log("data " + str);
+        var subject = "";
+        var courseNum = "";
+        var courseTitle = "";
+        var credits = 0;
+        arr.pop(); //Remove last element which is garbage
+        console.log(arr.length);
+
+        for (var i = 0; i < arr.length; i++){
+            courseTitle = arr[i];
+            i++;
+            courseNum = arr[i];
+            i++;
+            subject = arr[i];
+            i++;
+            credits = parseInt(arr[i]);
+
+            course = new TransferCourse(subject, courseNum, courseTitle);
+            course.setCredits(credits);
+            major.addCourse(course);
+        }
+      }
       </script>
 
               <div class="footer">
