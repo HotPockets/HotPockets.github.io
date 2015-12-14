@@ -60,15 +60,21 @@
               <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                   <form class="form-horizontal input-lg" method="post">
-                  <select style="width: 100%; color:black;" id="savesOutputBox" name="selectedSave">
+                  <select style="width: 100%; color:black;" id="adminProfileList" name="selectedSave">
                     <option value='none'>Please select an evaluation</option>
                     <?php
                     adminProfileList();
                     ?>
                   </select>
-                  <a href="courses.php" class="btn btn-lg btn-danger" style="margin-top: 6px">Create Evaluation</a>
+                  <!-- <a href="courses.php" class="btn btn-lg btn-danger" style="margin-top: 6px">Create Evaluation</a> -->
                   <input class="btn btn-lg btn-danger" type="submit" name="evaluate" value="Evaluate Selection">
                   </form>
+
+                  <form class="form-horizontal input-lg" method="post">
+                  <select style="width: 100%; color:black;" id="evalList" name="selectedEval">
+
+                  </select>
+                </form>
                   <?php
                     if (isset($_POST['evaluate'])) {
                       $name = isset($_POST['selectedSave']) ? $_POST['selectedSave'] : false;
@@ -93,6 +99,36 @@
 
         </div>
       </div>
+
+      <script>
+      $("document").ready(function() {
+      //createPDF(new jsPDF());
+        //Populate courses
+        //When the dropdown changes
+        $("#adminProfileList").change(function(){
+          //Get the selected value
+           var selectedValue = this.value;
+           console.log("Selected " + selectedValue);
+           //Post it to the file adminGetEvals.php
+          $.ajax({
+               url: 'source/php/adminGetEvals.php',
+               type: 'POST',
+               data: {option : selectedValue},
+               success: function(data) {
+                   console.log("Data sent! Option: " + selectedValue + " Data: " + data);
+                   $("#evalList").html(data);
+               },
+               error: function (xhr, ajaxOptions, thrownError) {
+                 console.log(xhr.status);
+                 console.log(xhr.responseText);
+                 console.log(thrownError);
+             }
+           });
+        });
+
+
+      });
+      </script>
 
               <div class="footer">
                 <br><br><br>
